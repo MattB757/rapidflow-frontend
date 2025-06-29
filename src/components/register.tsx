@@ -9,17 +9,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import logo from "@/assets/logo.png";
+import Image from "next/image";
 
 export default function Register() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
       <div className="container mx-auto px-4 py-8">
         {/* Logo */}
-        <div className="mb-12">
+        <div className="mb-16">
           <div className="inline-flex items-center justify-center px-4 py-2 border-2 border-white rounded-lg">
-            <span className="text-white font-bold text-xl tracking-wider">
-              MATTHEW
-            </span>
+            <Image src={logo} width={100} height={40} alt="Logo" />
           </div>
         </div>
 
