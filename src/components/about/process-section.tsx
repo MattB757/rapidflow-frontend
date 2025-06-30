@@ -65,7 +65,7 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="bg-white py-16 px-6">
+    <section id="our-process" className="bg-white py-16 px-6">
       <div className="max-w-4xl mx-auto">
         {/* Section Heading */}
         <h2 className="text-3xl md:text-4xl font-semibold text-purple-600 text-center mb-12">

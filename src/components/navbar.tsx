@@ -11,14 +11,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
+// import Link from "next/link"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+
+  const handleDesktopMouseEnter = () => {
+    setIsDesktopDropdownOpen(true);
+  };
+
+  const handleDesktopMouseLeave = () => {
+    setIsDesktopDropdownOpen(false);
+  };
 
   return (
     <div className="w-full bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        <nav className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg fixed top-0 left-0 right-0 m-3">
+        <nav className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg fixed top-0 left-0 right-0 m-3 z-50">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               {/* Logo */}
@@ -41,59 +52,76 @@ export default function Navbar() {
                   Home
                 </a>
 
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 font-bold transition-colors">
-                    <span>About us</span>
-                    <ChevronDown className="w-4 h-4" />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-[290px]">
-                    <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Settings className="w-4 h-4 text-gray-600" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-900">
-                            The process
+                {/* Desktop Dropdown with Hover */}
+                <div
+                  className="relative"
+                  onMouseEnter={handleDesktopMouseEnter}
+                  onMouseLeave={handleDesktopMouseLeave}
+                >
+                  <DropdownMenu
+                    open={isDesktopDropdownOpen}
+                    onOpenChange={setIsDesktopDropdownOpen}
+                  >
+                    <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 font-bold transition-colors">
+                      <span>About us</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isDesktopDropdownOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent
+                      align="start"
+                      className="w-[290px] animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-200"
+                    >
+                      <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Settings className="w-4 h-4 text-gray-600" />
                           </div>
-                          <div className="text-sm text-gray-500">
-                            What goes on behind the scenes
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Target className="w-4 h-4 text-gray-600" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-900">
-                            Our mission
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            What we strive for
-                          </div>
-                        </div>
-                      </div>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <Brain className="w-4 h-4 text-gray-600" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="font-medium text-gray-900">
-                            Team our team
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            Who we are
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">
+                              The process
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              What goes on behind the scenes
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Target className="w-4 h-4 text-gray-600" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">
+                              Our mission
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              What we strive for
+                            </div>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Brain className="w-4 h-4 text-gray-600" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">
+                              Meet our team
+                            </div>
+                            <div className="text-sm text-gray-500">
+                              Who we are
+                            </div>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
 
                 <a
                   href="#"
@@ -101,10 +129,9 @@ export default function Navbar() {
                 >
                   Contact
                 </a>
-
                 <a
                   href="#"
-                  className="text-gray-700 hover:text-gray-900  font-bold transition-colors"
+                  className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
                 >
                   FAQ
                 </a>
@@ -119,7 +146,6 @@ export default function Navbar() {
               >
                 Client portal
               </a>
-
               <Button className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                 Get in touch
               </Button>
@@ -149,25 +175,36 @@ export default function Navbar() {
                   Home
                 </a>
 
-                <DropdownMenu>
+                {/* Mobile Dropdown (Click-based) */}
+                <DropdownMenu
+                  open={isMobileDropdownOpen}
+                  onOpenChange={setIsMobileDropdownOpen}
+                >
                   <DropdownMenuTrigger className="flex items-center justify-between text-gray-700 hover:text-gray-900 font-medium transition-colors w-full text-left">
                     <span>About us</span>
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${
+                        isMobileDropdownOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-48">
-                    <DropdownMenuItem>
+                  <DropdownMenuContent
+                    align="start"
+                    className="w-48 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-200"
+                  >
+                    <DropdownMenuItem className="transition-colors duration-150">
                       <a href="#" className="w-full">
-                        Our Story
+                        The process
                       </a>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="transition-colors duration-150">
                       <a href="#" className="w-full">
-                        Team
+                        Our mission
                       </a>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className="transition-colors duration-150">
                       <a href="#" className="w-full">
-                        Mission
+                        Meet our team
                       </a>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
@@ -179,14 +216,12 @@ export default function Navbar() {
                 >
                   Contact
                 </a>
-
                 <a
                   href="#"
                   className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
                 >
                   FAQ
                 </a>
-
                 <div className="pt-4 border-t border-gray-200 space-y-3">
                   <a
                     href="#"
@@ -194,7 +229,6 @@ export default function Navbar() {
                   >
                     Client portal
                   </a>
-
                   <Button className="w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
                     Get in touch
                   </Button>
@@ -204,6 +238,6 @@ export default function Navbar() {
           )}
         </nav>
       </div>
-    </div>
+    </div> 
   );
 }
