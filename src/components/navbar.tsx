@@ -12,11 +12,14 @@ import {
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
+import ContactModal from "./common/ContactModal";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDesktopMouseEnter = () => {
     setIsDesktopDropdownOpen(true);
@@ -159,7 +162,10 @@ export default function Navbar() {
               >
                 Client portal
               </a>
-              <Button className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+              <Button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+              >
                 Get in touch
               </Button>
             </div>
@@ -258,7 +264,10 @@ export default function Navbar() {
                   >
                     Client portal
                   </a>
-                  <Button className="w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
+                  <Button
+                    onClick={() => setIsModalOpen(true)}
+                    className="w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                  >
                     Get in touch
                   </Button>
                 </div>
@@ -267,6 +276,11 @@ export default function Navbar() {
           )}
         </nav>
       </div>
+      {/* Contact Modal */}
+      <ContactModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }
