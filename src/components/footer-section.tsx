@@ -6,6 +6,7 @@ import { SiTiktok } from "react-icons/si";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
+import bbb from "@/assets/bbb.jpeg";
 
 export default function Footer() {
   return (
@@ -105,9 +106,16 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-700">
+          <Image
+            src={bbb}
+            width={100}
+            height={100}
+            alt="bbb"
+            className="mb-4 md:mb-0"
+          />
           {/* Copyright */}
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} HexPrep
+            <div>&copy; {new Date().getFullYear()} All rights reserved</div>
           </div>
 
           {/* Social Media Icons */}

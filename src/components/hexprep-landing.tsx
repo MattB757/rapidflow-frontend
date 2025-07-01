@@ -180,7 +180,7 @@ export default function HexprepLanding() {
       </section>
 
       {/* Features Section */}
-      <section className="relative md:-mt-20 z-20">
+      <section className="relative -mt-20 z-20">
         {/* Modern Background for Features */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-50 to-white"></div>
