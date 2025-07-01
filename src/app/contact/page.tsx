@@ -1,14 +1,14 @@
-import Contact from "@/components/contact/contact-page";
-import Footer from "@/components/footer-section";
-import Navbar from "@/components/navbar";
-import React from "react";
+// import Contact from "@/components/contact/contact-page";
+// import Footer from "@/components/footer-section";
+// import Navbar from "@/components/navbar";
+// import React from "react";
 
 const ContactPage = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar />
       <Contact />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };

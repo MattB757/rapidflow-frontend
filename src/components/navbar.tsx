@@ -2,291 +2,325 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Menu, X, Settings, Target, Brain } from "lucide-react";
+import {
+  ChevronDown,
+  Menu,
+  X,
+  Settings,
+  Target,
+  Brain,
+  Sparkles,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Image from "next/image";
-import logo from "@/assets/logo.png";
 import Link from "next/link";
 import ContactModal from "./common/ContactModal";
+import Image from "next/image";
+import logo from "@/assets/logo.png";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDesktopMouseEnter = () => {
-    setIsDesktopDropdownOpen(true);
-  };
-
-  const handleDesktopMouseLeave = () => {
-    setIsDesktopDropdownOpen(false);
-  };
+  const handleDesktopMouseEnter = () => setIsDesktopDropdownOpen(true);
+  const handleDesktopMouseLeave = () => setIsDesktopDropdownOpen(false);
 
   return (
-    <div className="w-full bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <nav className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg fixed top-0 left-0 right-0 m-3 z-50">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              {/* Logo */}
-              <div className="flex items-center space-x-3">
-                <Image
-                  className="rounded-md"
-                  src={logo}
-                  width={50}
-                  height={50}
-                  alt="Logo"
-                />
-              </div>
+    <>
+      {/* Navbar with Koro Background */}
+      <nav className="bg-white fixed top-0 left-0 right-0 z-50 px-6 py-2 transition-all duration-300 overflow-hidden bg-opacity-30">
+        {/* Koro Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Animated geometric shapes */}
+          <div className="absolute top-2 left-10 w-8 h-8 border border-red-500/30 rotate-45 animate-pulse opacity-40"></div>
+          <div className="absolute top-4 right-20 w-6 h-6 bg-red-500/20 animate-bounce opacity-30"></div>
+          <div className="absolute bottom-2 left-32 w-10 h-10 border border-black/20 rotate-12 animate-spin-slow opacity-25"></div>
+          <div className="absolute bottom-4 right-40 w-4 h-4 bg-black/10 animate-pulse opacity-20"></div>
 
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center space-x-8 ml-8">
-                <Link
-                  href="/"
-                  className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
-                >
-                  Home
-                </Link>
+          {/* Floating particles */}
+          <div className="absolute top-6 left-1/4 w-1 h-1 bg-red-500 rounded-full animate-ping opacity-40"></div>
+          <div className="absolute top-8 right-1/3 w-1.5 h-1.5 bg-black/30 rounded-full animate-ping opacity-30 delay-700"></div>
+          <div className="absolute bottom-6 left-2/3 w-1 h-1 bg-red-500 rounded-full animate-ping opacity-35 delay-1000"></div>
 
-                {/* Desktop Dropdown with Hover */}
-                <div
-                  className="relative"
-                  onMouseEnter={handleDesktopMouseEnter}
-                  onMouseLeave={handleDesktopMouseLeave}
-                >
-                  <DropdownMenu
-                    open={isDesktopDropdownOpen}
-                    onOpenChange={setIsDesktopDropdownOpen}
-                  >
-                    <DropdownMenuTrigger className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 font-bold transition-colors">
-                      <Link href="/about">
-                        <span>About us</span>
-                      </Link>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          isDesktopDropdownOpen ? "rotate-180" : "rotate-0"
-                        }`}
-                      />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      align="start"
-                      className="w-[290px] animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-200"
-                    >
-                      <DropdownMenuItem asChild>
-                        <a
-                          href="#our-process"
-                          className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150 flex items-start space-x-3"
-                        >
-                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Settings className="w-4 h-4 text-gray-600" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium text-gray-900">
-                              The process
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              What goes on behind the scenes
-                            </div>
-                          </div>
-                        </a>
-                      </DropdownMenuItem>
+          {/* Geometric lines */}
+          <div className="absolute top-0 left-1/5 w-px h-full bg-gradient-to-b from-transparent via-red-500/30 to-transparent opacity-30 animate-pulse"></div>
+          <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-black/20 to-transparent opacity-20 animate-pulse delay-500"></div>
+        </div>
 
-                      <DropdownMenuItem asChild>
-                        <a
-                          href="#our-mission"
-                          className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150 flex items-start space-x-3"
-                        >
-                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Target className="w-4 h-4 text-gray-600" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium text-gray-900">
-                              Our mission
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              What we strive for
-                            </div>
-                          </div>
-                        </a>
-                      </DropdownMenuItem>
+        {/* Backdrop blur effect */}
+        <div className="absolute inset-0 backdrop-blur-sm"></div>
 
-                      <DropdownMenuItem asChild>
-                        <a
-                          href="#meet-our-team"
-                          className="p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150 flex items-start space-x-3"
-                        >
-                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Brain className="w-4 h-4 text-gray-600" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium text-gray-900">
-                              Meet our team
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              Who we are
-                            </div>
-                          </div>
-                        </a>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+        {/* Navigation Content */}
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="flex items-center justify-between w-full">
+            {/* Left: Logo */}
+            <div className="flex-shrink-0">
+              <div className="flex items-center space-x-3 group">
+                <div className="relative">
+                  <Image
+                    className="rounded-sm shadow-lg group-hover:scale-110 transition-transform duration-300"
+                    src={logo}
+                    width={50}
+                    height={50}
+                    alt="Logo"
+                  />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-
-                <Link
-                  href="contact"
-                  className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
-                >
-                  Contact
-                </Link>
-                <Link
-                  href="faq"
-                  className="text-gray-700 hover:text-gray-900 font-bold transition-colors"
-                >
-                  FAQ
-                </Link>
               </div>
             </div>
 
-            {/* Right Side Buttons */}
+            {/* Center: Navigation Links */}
+            <div className="hidden md:flex items-center space-x-8 justify-center flex-1">
+              <Link
+                href="/home"
+                className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 relative group px-3 py-2"
+              >
+                <span className="relative z-10">Home</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
+
+              {/* Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={handleDesktopMouseEnter}
+                onMouseLeave={handleDesktopMouseLeave}
+              >
+                <DropdownMenu
+                  open={isDesktopDropdownOpen}
+                  onOpenChange={setIsDesktopDropdownOpen}
+                >
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center border-none space-x-1 text-gray-900 hover:text-red-600 font-bold transition-all duration-300 relative group px-3 py-2 rounded-lg">
+                      <Link href="/about">
+                        <span className="relative z-10">About</span>
+                      </Link>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-all duration-300 relative z-10 ${
+                          isDesktopDropdownOpen
+                            ? "rotate-180 text-red-400"
+                            : "rotate-0"
+                        }`}
+                      />
+                    </button>
+                  </DropdownMenuTrigger>
+
+                  <DropdownMenuContent
+                    align="start"
+                    className="w-[320px] bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300"
+                  >
+                    {[
+                      {
+                        href: "/about#our-process",
+                        icon: <Settings className="w-5 h-5 text-white" />,
+                        title: "The process",
+                        desc: "What goes on behind the scenes",
+                      },
+                      {
+                        href: "/about#our-mission",
+                        icon: <Target className="w-5 h-5 text-white" />,
+                        title: "Our mission",
+                        desc: "What we strive for",
+                      },
+                      {
+                        href: "/about#meet-our-team",
+                        icon: <Brain className="w-5 h-5 text-white" />,
+                        title: "Meet our team",
+                        desc: "Who we are",
+                      },
+                    ].map((item, idx) => (
+                      <DropdownMenuItem asChild key={idx}>
+                        <a
+                          href={item.href}
+                          className="p-4 rounded-lg hover:bg-red-500/20 transition-all duration-300 flex items-start space-x-3 group"
+                        >
+                          <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            {item.icon}
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-semibold text-gray-900 group-hover:text-red-600 transition-colors duration-300">
+                              {item.title}
+                            </div>
+                            <div className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-300">
+                              {item.desc}
+                            </div>
+                          </div>
+                        </a>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+
+              <Link
+                href="/"
+                className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 relative group px-3 py-2"
+              >
+                <span className="relative z-10">Contact</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
+
+              <Link
+                href="/faq"
+                className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 relative group px-3 py-2"
+              >
+                <span className="relative z-10">FAQ</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
+            </div>
+
+            {/* Right: Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <Link
-                href="portal"
-                className="bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-gray-900 font-bold px-4 py-2 rounded transition-colors"
+                href="/portal"
+                className="bg-gray-100/80 hover:bg-gray-200/80 text-gray-900 hover:text-red-600 font-bold px-6 py-2 rounded-lg transition-all duration-300 border border-gray-300/50 hover:border-red-400/50 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm"
               >
                 Client portal
               </Link>
-              {/* <a
-                href="#"
-                className="bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-gray-900 font-bold px-4 py-2 rounded transition-colors"
+
+              <Button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-8 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-red-500/25 hover:scale-105 border border-red-400/50 relative overflow-hidden group"
               >
-                Client portal
-              </a> */}
-              <Button className="bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
-                Get in touch
+                <span className="relative z-10 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  Get in touch
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Button>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Toggle */}
             <button
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="md:hidden p-3 rounded-xl hover:bg-white/20 transition-all duration-300 border border-gray-300/50 backdrop-blur-sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-700" />
+                <X className="w-6 h-6 text-gray-900" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-6 h-6 text-gray-900" />
               )}
             </button>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Dropdown Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
+            <div className="md:hidden mt-6 pt-6 border-t border-gray-300/50 animate-in fade-in-0 slide-in-from-top-2 duration-300">
               <div className="flex flex-col space-y-4">
                 <Link
                   href="/"
-                  className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                 >
                   Home
                 </Link>
 
-                {/* Mobile Dropdown (Click-based) */}
                 <DropdownMenu
                   open={isMobileDropdownOpen}
                   onOpenChange={setIsMobileDropdownOpen}
                 >
-                  <DropdownMenuTrigger className="flex items-center justify-between text-gray-700 hover:text-gray-900 font-medium transition-colors w-full text-left">
-                    <Link href="about">
-                      <span>About us</span>
-                    </Link>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${
-                        isMobileDropdownOpen ? "rotate-180" : "rotate-0"
-                      }`}
-                    />
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center border-none justify-between text-gray-900 hover:text-red-600 font-medium transition-all duration-300 w-full text-left p-3 rounded-lg hover:bg-white/20">
+                      <Link href="about">About</Link>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-300 ${
+                          isMobileDropdownOpen ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </button>
                   </DropdownMenuTrigger>
+
                   <DropdownMenuContent
                     align="start"
-                    className="w-48 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-200"
+                    className="w-64 bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300"
                   >
-                    <DropdownMenuItem asChild>
-                      <a
-                        href="#our-process"
-                        className="w-full transition-colors duration-150 block px-2 py-1"
-                        onClick={() => setIsMobileMenuOpen(false)} // Optional: close mobile menu
-                      >
-                        The process
-                      </a>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem asChild>
-                      <a
-                        href="#our-mission"
-                        className="w-full transition-colors duration-150 block px-2 py-1"
-                        onClick={() => setIsMobileMenuOpen(false)} // Optional: close mobile menu
-                      >
-                        Our mission
-                      </a>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem asChild>
-                      <a
-                        href="#meet-our-team"
-                        className="w-full transition-colors duration-150 block px-2 py-1"
-                        onClick={() => setIsMobileMenuOpen(false)} // optional: close mobile menu after click
-                      >
-                        Meet our team
-                      </a>
-                    </DropdownMenuItem>
+                    {[
+                      { href: "#our-process", label: "The process" },
+                      { href: "#our-mission", label: "Our mission" },
+                      { href: "#meet-our-team", label: "Meet our team" },
+                    ].map((item, idx) => (
+                      <DropdownMenuItem asChild key={idx}>
+                        <a
+                          href={item.href}
+                          className="w-full transition-all duration-300 block px-4 py-3 text-gray-900 hover:text-red-600 hover:bg-red-500/20 rounded-lg"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </a>
+                      </DropdownMenuItem>
+                    ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
 
                 <Link
-                  href="contact"
-                  className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  href="/"
+                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                 >
                   Contact
                 </Link>
+
                 <Link
-                  href="faq"
-                  className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                  href="/faq"
+                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                 >
                   FAQ
                 </Link>
-                <div className="pt-4 border-t border-gray-200 space-y-3">
+
+                <div className="pt-4 border-t border-gray-300/50 space-y-3">
                   <Link
-                    href="portal"
-                    className="block text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                    href="/portal"
+                    className="block text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                   >
                     Client portal
                   </Link>
-                  {/* <a
-                    href="#"
-                    className="block text-gray-700 hover:text-gray-900 font-medium transition-colors"
+
+                  <Button
+                    onClick={() => {
+                      setIsModalOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-red-500/25 border border-red-400/50 relative overflow-hidden group"
                   >
-                    Client portal
-                  </a> */}
-                  <Button className="w-full bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white font-medium px-6 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg">
-                    Get in touch
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <Sparkles className="w-4 h-4" />
+                      Get in touch
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </Button>
                 </div>
               </div>
             </div>
           )}
-        </nav>
-      </div>
-      {/* Contact Modal */}
-      <ContactModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-    </div>
+        </div>
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
+      </nav>
+
+      {/* Spacer to prevent content from hiding behind fixed navbar */}
+      <div className="h-[60px]"></div>
+
+      <style jsx>{`
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 8s linear infinite;
+        }
+      `}</style>
+    </>
   );
 }
