@@ -51,14 +51,14 @@ export default function ProcessSection() {
 
     if (status === "active") {
       return (
-        <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+        <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
           <span className="text-white font-semibold text-sm">{stepId}</span>
         </div>
       );
     }
 
     return (
-      <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+      <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center">
         <span className="text-white font-semibold text-sm">{stepId}</span>
       </div>
     );
@@ -88,7 +88,7 @@ export default function ProcessSection() {
               <div
                 className={`flex-1 p-4 rounded-lg transition-all duration-500 ${
                   getStepStatus(step.id) === "active"
-                    ? "bg-purple-50 border-l-4 border-purple-600"
+                    ? "bg-purple-50 border-l-4 border-black"
                     : "bg-gray-50"
                 }`}
               >
@@ -113,7 +113,7 @@ export default function ProcessSection() {
           </p>
           <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
             <div
-              className="bg-purple-600 h-2 rounded-full transition-all duration-500"
+              className="bg-black h-2 rounded-full transition-all duration-500"
               style={{ width: `${(currentStep / steps.length) * 100}%` }}
             ></div>
           </div>
