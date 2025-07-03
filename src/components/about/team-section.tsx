@@ -1,64 +1,64 @@
-"use client"
-import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
-import member1 from "@/assets/download1.jpg"
-import member2 from "@/assets/download2.jpg"
-import member3 from "@/assets/owner3.jpg"
-import member4 from "@/assets/download3.avif"
+"use client";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import member1 from "@/assets/download1.jpg";
+import member2 from "@/assets/download2.jpg";
+import member3 from "@/assets/owner3.jpg";
+import member4 from "@/assets/download3.avif";
 
 export default function MeetOurTeam() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const teamMembers = [
     {
       id: 1,
       name: "Marco",
-      role: "HexPrep Owner",
+      role: "Rapid Flow Fulfillment Owner",
       image: member1,
     },
     {
       id: 2,
       name: "Eric",
-      role: "HexPrep Owner",
+      role: "Leader",
       image: member2,
     },
     {
       id: 3,
       name: "Khai",
-      role: "HexPrep Owner",
+      role: "Assistant Leader",
       image: member3,
     },
     {
       id: 4,
       name: "Luis",
-      role: "HexPrep Co-Owner",
+      role: "Employee",
       image: member4,
     },
-  ]
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
+          setIsVisible(true);
         }
       },
       {
         threshold: 0.3,
-      },
-    )
+      }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+        observer.unobserve(sectionRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <section
@@ -91,22 +91,28 @@ export default function MeetOurTeam() {
           <div className="space-y-12">
             <div
               className={`transition-all duration-1000 transform ${
-                isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-10 opacity-0"
               }`}
             >
               <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-8">
-                <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">Our Leadership</span>
+                <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
+                  Our Leadership
+                </span>
               </div>
 
               <h2 className="text-6xl lg:text-8xl font-black text-white leading-none mb-8">
                 Meet
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">Our Team</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
+                  Our Team
+                </span>
               </h2>
 
               <p className="text-2xl text-gray-300 leading-relaxed mb-8">
-                The skilled professionals dedicated to delivering seamless and reliable FBA prep services for your
-                business.
+                The skilled professionals dedicated to delivering seamless and
+                reliable FBA prep services for your business.
               </p>
 
               <button className="group relative px-10 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-300 hover:from-red-600 hover:to-red-700 hover:scale-105 hover:shadow-xl hover:shadow-red-500/25">
@@ -120,7 +126,9 @@ export default function MeetOurTeam() {
           <div className="relative">
             <div
               className={`transition-all duration-1000 delay-300 transform ${
-                isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-10 opacity-0"
               }`}
             >
               {/* Overlapping Cards Layout */}
@@ -138,8 +146,12 @@ export default function MeetOurTeam() {
                       />
                     </div>
                     <div className="text-center">
-                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[0].name}</h3>
-                      <p className="text-red-400 font-bold text-sm">{teamMembers[0].role}</p>
+                      <h3 className="text-xl font-black text-white mb-1">
+                        {teamMembers[0].name}
+                      </h3>
+                      <p className="text-red-400 font-bold text-sm">
+                        {teamMembers[0].role}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -157,8 +169,12 @@ export default function MeetOurTeam() {
                       />
                     </div>
                     <div className="text-center">
-                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[1].name}</h3>
-                      <p className="text-red-400 font-bold text-sm">{teamMembers[1].role}</p>
+                      <h3 className="text-xl font-black text-white mb-1">
+                        {teamMembers[1].name}
+                      </h3>
+                      <p className="text-red-400 font-bold text-sm">
+                        {teamMembers[1].role}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -176,8 +192,12 @@ export default function MeetOurTeam() {
                       />
                     </div>
                     <div className="text-center">
-                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[2].name}</h3>
-                      <p className="text-red-400 font-bold text-sm">{teamMembers[2].role}</p>
+                      <h3 className="text-xl font-black text-white mb-1">
+                        {teamMembers[2].name}
+                      </h3>
+                      <p className="text-red-400 font-bold text-sm">
+                        {teamMembers[2].role}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -195,8 +215,12 @@ export default function MeetOurTeam() {
                       />
                     </div>
                     <div className="text-center">
-                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[3].name}</h3>
-                      <p className="text-red-400 font-bold text-sm">{teamMembers[3].role}</p>
+                      <h3 className="text-xl font-black text-white mb-1">
+                        {teamMembers[3].name}
+                      </h3>
+                      <p className="text-red-400 font-bold text-sm">
+                        {teamMembers[3].role}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -210,5 +234,5 @@ export default function MeetOurTeam() {
         </div>
       </div>
     </section>
-  )
+  );
 }
