@@ -26,7 +26,7 @@ export default function AboutSection() {
   return (
     <section
       id="about-section"
-      className="bg-black py-16 px-6 relative overflow-hidden"
+      className="bg-black py-20 px-6 relative overflow-hidden"
     >
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90"></div>
@@ -126,92 +126,140 @@ export default function AboutSection() {
         </svg>
       </div>
 
-      <div className="max-w-4xl mx-auto text-center md:mt-20 relative z-10">
-        {/* Animated heading */}
-        <div className="relative mb-8">
-          <h2
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 transition-all duration-1000 transform ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-          >
-            About Us
-          </h2>
-          {/* Red accent line */}
-          <div
-            className={`w-24 h-1 bg-red-500 mx-auto transition-all duration-1000 delay-300 transform ${
-              isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
-            }`}
-          ></div>
-        </div>
+      {/* New Layout Structure */}
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+          {/* Left Side - Content */}
+          <div className="space-y-12">
+            {/* Heading */}
+            <div className="space-y-6">
+              <div
+                className={`transition-all duration-1000 transform ${
+                  isVisible
+                    ? "translate-x-0 opacity-100"
+                    : "-translate-x-10 opacity-0"
+                }`}
+              >
+                <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-6">
+                  <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
+                    About Rapid Flow Fulfillment
+                  </span>
+                </div>
 
-        {/* Animated paragraph */}
-        <div
-          className={`transition-all duration-1000 delay-500 transform ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-        >
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed relative backdrop-blur-sm bg-black/20 p-6 rounded-lg border border-gray-800/50">
-            At{" "}
-            <span className="text-red-500 font-semibold hover:text-red-400 transition-colors duration-300 cursor-default">
-              Matthew
-            </span>
-            , we pride ourselves on being a reliable and efficient partner for
-            Amazon FBA sellers, resellers, and businesses in need of shipping
-            support. We offer quick turnaround times, excellent communication,
-            and competitive rates to ensure your products are prepped and
-            shipped seamlessly. Whether you&apos;re looking to streamline your
-            FBA prep or need assistance with shipping logistics,{" "}
-            <span className="text-red-500 font-semibold hover:text-red-400 transition-colors duration-300 cursor-default">
-              Matthew
-            </span>{" "}
-            is here to help your business succeed.
-          </p>
-        </div>
-
-        {/* Animated call-to-action button */}
-        <div
-          className={`mt-12 transition-all duration-1000 delay-700 transform ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-        >
-          <button className="group relative px-8 py-4 bg-red-500 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-red-600 hover:scale-105 hover:shadow-lg hover:shadow-red-500/25">
-            <span className="relative z-10">Learn More About Us</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </button>
-        </div>
-
-        {/* Floating stats */}
-        <div
-          className={`mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 delay-900 transform ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
-        >
-          <div className="group cursor-default">
-            <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-lg border border-gray-800/50 hover:border-red-500 transition-all duration-300 hover:transform hover:scale-105 hover:bg-gray-800/80">
-              <div className="text-2xl font-bold text-red-500 mb-2 group-hover:animate-pulse">
-                Fast
-              </div>
-              <div className="text-gray-300 text-sm">Quick Turnaround</div>
-            </div>
-          </div>
-          <div className="group cursor-default">
-            <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-lg border border-gray-800/50 hover:border-red-500 transition-all duration-300 hover:transform hover:scale-105 hover:bg-gray-800/80">
-              <div className="text-2xl font-bold text-red-500 mb-2 group-hover:animate-pulse">
-                Reliable
-              </div>
-              <div className="text-gray-300 text-sm">
-                Excellent Communication
+                <h2 className="text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+                  Your Trusted
+                  <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">
+                    Business Partner
+                  </span>
+                </h2>
               </div>
             </div>
+
+            {/* Description */}
+            <div
+              className={`transition-all duration-1000 delay-300 transform ${
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-10 opacity-0"
+              }`}
+            >
+              <p className="text-xl text-gray-300 leading-relaxed mb-8">
+                At{" "}
+                <span className="text-red-400 font-bold">
+                  Rapid Flow Fulfillment
+                </span>
+                , we pride ourselves on being a reliable and efficient partner
+                for Amazon FBA sellers, resellers, and businesses in need of
+                shipping support.
+              </p>
+
+              <p className="text-lg text-gray-400 leading-relaxed">
+                We offer quick turnaround times, excellent communication, and
+                competitive rates to ensure your products are prepped and
+                shipped seamlessly. Whether you&apos;re looking to streamline
+                your FBA prep or need assistance with shipping logistics,{" "}
+                <span className="text-red-400 font-bold">
+                  Rapid Flow Fulfillment
+                </span>{" "}
+                is here to help your business succeed.
+              </p>
+            </div>
+
+            {/* CTA Button */}
+            <div
+              className={`transition-all duration-1000 delay-500 transform ${
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "-translate-x-10 opacity-0"
+              }`}
+            >
+              <button className="group relative px-10 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-lg rounded-xl overflow-hidden transition-all duration-300 hover:from-red-600 hover:to-red-700 hover:scale-105 hover:shadow-xl hover:shadow-red-500/25">
+                <span className="relative z-10">Learn More About Us</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              </button>
+            </div>
           </div>
-          <div className="group cursor-default">
-            <div className="bg-gray-900/80 backdrop-blur-sm p-6 rounded-lg border border-gray-800/50 hover:border-red-500 transition-all duration-300 hover:transform hover:scale-105 hover:bg-gray-800/80">
-              <div className="text-2xl font-bold text-red-500 mb-2 group-hover:animate-pulse">
-                Affordable
+
+          {/* Right Side - Stats Cards */}
+          <div className="space-y-8">
+            <div
+              className={`transition-all duration-1000 delay-700 transform ${
+                isVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-10 opacity-0"
+              }`}
+            >
+              <div className="grid gap-6">
+                {/* Fast Card */}
+                <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/20 hover:border-red-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-red-500/20">
+                  <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
+                      <div className="text-2xl font-black text-white">F</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-black text-white mb-1">
+                        Fast
+                      </div>
+                      <div className="text-gray-400">
+                        Quick Turnaround Times
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Reliable Card */}
+                <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/20 hover:border-red-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-red-500/20">
+                  <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
+                      <div className="text-2xl font-black text-white">R</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-black text-white mb-1">
+                        Reliable
+                      </div>
+                      <div className="text-gray-400">
+                        Excellent Communication
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Affordable Card */}
+                <div className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl p-8 rounded-2xl border border-white/20 hover:border-red-500/50 transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-red-500/20">
+                  <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
+                      <div className="text-2xl font-black text-white">A</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-black text-white mb-1">
+                        Affordable
+                      </div>
+                      <div className="text-gray-400">Competitive Rates</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="text-gray-300 text-sm">Competitive Rates</div>
             </div>
           </div>
         </div>

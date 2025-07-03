@@ -1,17 +1,14 @@
-"use client";
-
-import { Twitter, Linkedin, Mail } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-
-import member1 from "@/assets/download1.jpg";
-import member2 from "@/assets/download2.jpg";
-import member3 from "@/assets/owner3.jpg";
-import member4 from "@/assets/download3.avif";
+"use client"
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
+import member1 from "@/assets/download1.jpg"
+import member2 from "@/assets/download2.jpg"
+import member3 from "@/assets/owner3.jpg"
+import member4 from "@/assets/download3.avif"
 
 export default function MeetOurTeam() {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
 
   const teamMembers = [
     {
@@ -38,297 +35,180 @@ export default function MeetOurTeam() {
       role: "HexPrep Co-Owner",
       image: member4,
     },
-  ];
+  ]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setIsVisible(true)
         }
       },
       {
-        threshold: 0.3, // Trigger when 30% of the section is visible
-      }
-    );
+        threshold: 0.3,
+      },
+    )
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      observer.observe(sectionRef.current)
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+        observer.unobserve(sectionRef.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   return (
     <section
       ref={sectionRef}
       id="meet-our-team"
-      className="relative bg-gray-50 py-20 px-6 overflow-hidden"
+      className="relative bg-gradient-to-br from-black via-gray-900 to-black py-20 px-6 overflow-hidden min-h-screen"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-red-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-black/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-red-400/8 rounded-full blur-2xl animate-float"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-red-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-red-400/5 rounded-full blur-2xl animate-pulse delay-500"></div>
 
         {/* Geometric patterns */}
-        <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 opacity-10">
           <div className="absolute top-32 left-32 w-12 h-12 border-2 border-red-500 rotate-45 animate-spin-slow"></div>
-          <div className="absolute bottom-32 right-32 w-8 h-8 border border-black rotate-12 animate-spin-reverse"></div>
+          <div className="absolute bottom-32 right-32 w-8 h-8 border border-white rotate-12 animate-spin-reverse"></div>
+          <div className="absolute top-1/4 right-1/4 w-6 h-6 bg-red-500 rounded-full animate-bounce"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-4 h-4 bg-white rounded-full animate-ping"></div>
         </div>
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Heading */}
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "animate-fade-in" : "opacity-0"
-          }`}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-            Meet our{" "}
-            <span className="relative">
-              <span className="text-red-600">team</span>
-              <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-red-500 to-red-600 rounded-full"></div>
-            </span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Meet the skilled team dedicated to delivering seamless and reliable
-            FBA prep services for your business.
-          </p>
-        </div>
-
-        {/* Team Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {/* First card - comes from LEFT */}
-          <div
-            className={`group transition-all duration-1000 ${
-              isVisible
-                ? "animate-slide-from-left"
-                : "opacity-0 -translate-x-full"
-            }`}
-            style={{ animationDelay: isVisible ? "200ms" : "0ms" }}
-          >
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-xl group-hover:bg-red-500/10 transition-colors duration-300"></div>
-
-              <div className="relative z-10">
-                <div className="relative mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src={teamMembers[0].image || "/placeholder.svg"}
-                    alt={teamMembers[0].name}
-                    className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                    width={300}
-                    height={400}
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  <div className="absolute bottom-4 right-4 flex gap-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Twitter className="w-4 h-4" />
-                    </div>
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Linkedin className="w-4 h-4" />
-                    </div>
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-red-600 transition-colors duration-300">
-                    {teamMembers[0].name}
-                  </h3>
-                  <p className="text-red-600 font-semibold text-lg">
-                    {teamMembers[0].role}
-                  </p>
-                  <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1 mt-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span className="text-red-600 text-sm font-medium">
-                      Leadership Team
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Second card - comes from TOP */}
-          <div
-            className={`group transition-all duration-1000 ${
-              isVisible
-                ? "animate-slide-from-top"
-                : "opacity-0 -translate-y-full"
-            }`}
-            style={{ animationDelay: isVisible ? "400ms" : "0ms" }}
-          >
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-xl group-hover:bg-red-500/10 transition-colors duration-300"></div>
-
-              <div className="relative z-10">
-                <div className="relative mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src={teamMembers[1].image || "/placeholder.svg"}
-                    alt={teamMembers[1].name}
-                    className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                    width={300}
-                    height={400}
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  <div className="absolute bottom-4 right-4 flex gap-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Twitter className="w-4 h-4" />
-                    </div>
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Linkedin className="w-4 h-4" />
-                    </div>
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-red-600 transition-colors duration-300">
-                    {teamMembers[1].name}
-                  </h3>
-                  <p className="text-red-600 font-semibold text-lg">
-                    {teamMembers[1].role}
-                  </p>
-                  <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1 mt-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span className="text-red-600 text-sm font-medium">
-                      Leadership Team
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Third card - comes from RIGHT */}
-          <div
-            className={`group transition-all duration-1000 ${
-              isVisible
-                ? "animate-slide-from-right"
-                : "opacity-0 translate-x-full"
-            }`}
-            style={{ animationDelay: isVisible ? "600ms" : "0ms" }}
-          >
-            <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-xl group-hover:bg-red-500/10 transition-colors duration-300"></div>
-
-              <div className="relative z-10">
-                <div className="relative mb-6 overflow-hidden rounded-xl">
-                  <Image
-                    src={teamMembers[2].image || "/placeholder.svg"}
-                    alt={teamMembers[2].name}
-                    className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                    width={300}
-                    height={400}
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  <div className="absolute bottom-4 right-4 flex gap-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Twitter className="w-4 h-4" />
-                    </div>
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Linkedin className="w-4 h-4" />
-                    </div>
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                      <Mail className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-red-600 transition-colors duration-300">
-                    {teamMembers[2].name}
-                  </h3>
-                  <p className="text-red-600 font-semibold text-lg">
-                    {teamMembers[2].role}
-                  </p>
-                  <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1 mt-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span className="text-red-600 text-sm font-medium">
-                      Leadership Team
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Fourth card - comes from BOTTOM */}
-        <div className="flex justify-center">
-          <div className="w-full max-w-sm md:max-w-none md:w-80 lg:w-96">
+      <div className="max-w-7xl mx-auto relative z-10 flex items-center min-h-screen">
+        {/* Split Layout */}
+        <div className="grid lg:grid-cols-2 gap-20 items-center w-full">
+          {/* Left Side - Team Info */}
+          <div className="space-y-12">
             <div
-              className={`group transition-all duration-1000 ${
-                isVisible
-                  ? "animate-slide-from-bottom"
-                  : "opacity-0 translate-y-full"
+              className={`transition-all duration-1000 transform ${
+                isVisible ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
               }`}
-              style={{ animationDelay: isVisible ? "800ms" : "0ms" }}
             >
-              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:transform hover:scale-105 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/5 rounded-full blur-xl group-hover:bg-red-500/10 transition-colors duration-300"></div>
+              <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-8">
+                <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">Our Leadership</span>
+              </div>
 
-                <div className="relative z-10">
-                  <div className="relative mb-6 overflow-hidden rounded-xl">
-                    <Image
-                      src={teamMembers[3].image || "/placeholder.svg"}
-                      alt={teamMembers[3].name}
-                      className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
-                      width={300}
-                      height={400}
-                    />
+              <h2 className="text-6xl lg:text-8xl font-black text-white leading-none mb-8">
+                Meet
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-600">Our Team</span>
+              </h2>
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <p className="text-2xl text-gray-300 leading-relaxed mb-8">
+                The skilled professionals dedicated to delivering seamless and reliable FBA prep services for your
+                business.
+              </p>
 
-                    <div className="absolute bottom-4 right-4 flex gap-2 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                        <Twitter className="w-4 h-4" />
-                      </div>
-                      <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                        <Linkedin className="w-4 h-4" />
-                      </div>
-                      <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-200">
-                        <Mail className="w-4 h-4" />
-                      </div>
+              <button className="group relative px-10 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-lg rounded-2xl overflow-hidden transition-all duration-300 hover:from-red-600 hover:to-red-700 hover:scale-105 hover:shadow-xl hover:shadow-red-500/25">
+                <span className="relative z-10">Meet The Team</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Side - Team Members in Creative Layout */}
+          <div className="relative">
+            <div
+              className={`transition-all duration-1000 delay-300 transform ${
+                isVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
+              }`}
+            >
+              {/* Overlapping Cards Layout */}
+              <div className="relative w-full h-[600px]">
+                {/* Card 1 - Top Left */}
+                <div className="absolute top-0 left-0 w-64 h-80 transform -rotate-6 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:z-50 z-40">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-2xl h-full">
+                    <div className="relative mb-4 overflow-hidden rounded-xl h-48">
+                      <Image
+                        src={teamMembers[0].image || "/placeholder.svg"}
+                        alt={teamMembers[0].name}
+                        className="w-full h-full object-cover"
+                        width={200}
+                        height={200}
+                      />
                     </div>
-                  </div>
-
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-red-600 transition-colors duration-300">
-                      {teamMembers[3].name}
-                    </h3>
-                    <p className="text-red-600 font-semibold text-lg">
-                      {teamMembers[3].role}
-                    </p>
-                    <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-4 py-1 mt-3">
-                      <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                      <span className="text-red-600 text-sm font-medium">
-                        Leadership Team
-                      </span>
+                    <div className="text-center">
+                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[0].name}</h3>
+                      <p className="text-red-400 font-bold text-sm">{teamMembers[0].role}</p>
                     </div>
                   </div>
                 </div>
+
+                {/* Card 2 - Top Right */}
+                <div className="absolute top-8 right-0 w-64 h-80 transform rotate-6 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:z-50 z-30">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-2xl h-full">
+                    <div className="relative mb-4 overflow-hidden rounded-xl h-48">
+                      <Image
+                        src={teamMembers[1].image || "/placeholder.svg"}
+                        alt={teamMembers[1].name}
+                        className="w-full h-full object-cover"
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[1].name}</h3>
+                      <p className="text-red-400 font-bold text-sm">{teamMembers[1].role}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 3 - Bottom Left */}
+                <div className="absolute bottom-0 left-16 w-64 h-80 transform rotate-3 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:z-50 z-20">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-2xl h-full">
+                    <div className="relative mb-4 overflow-hidden rounded-xl h-48">
+                      <Image
+                        src={teamMembers[2].image || "/placeholder.svg"}
+                        alt={teamMembers[2].name}
+                        className="w-full h-full object-cover"
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[2].name}</h3>
+                      <p className="text-red-400 font-bold text-sm">{teamMembers[2].role}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 4 - Bottom Right */}
+                <div className="absolute bottom-8 right-16 w-64 h-80 transform -rotate-3 hover:rotate-0 transition-all duration-500 hover:scale-110 hover:z-50 z-10">
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/20 shadow-2xl h-full">
+                    <div className="relative mb-4 overflow-hidden rounded-xl h-48">
+                      <Image
+                        src={teamMembers[3].image || "/placeholder.svg"}
+                        alt={teamMembers[3].name}
+                        className="w-full h-full object-cover"
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-xl font-black text-white mb-1">{teamMembers[3].name}</h3>
+                      <p className="text-red-400 font-bold text-sm">{teamMembers[3].role}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Central Connection Lines */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-red-500 rounded-full animate-pulse z-50"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-2 border-red-500/30 rounded-full animate-spin-slow"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
