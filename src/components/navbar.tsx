@@ -127,11 +127,17 @@ export default function Navbar() {
                         title: "Our mission",
                         desc: "What we strive for",
                       },
+                      // {
+                      //   href: "/about#meet-our-team",
+                      //   icon: <Brain className="w-5 h-5 text-white" />,
+                      //   title: "Meet our team",
+                      //   desc: "Who we are",
+                      // },
                       {
-                        href: "/about#meet-our-team",
+                        href: "/about#our-vision",
                         icon: <Brain className="w-5 h-5 text-white" />,
-                        title: "Meet our team",
-                        desc: "Who we are",
+                        title: "Our vision",
+                        desc: "Shaping the future",
                       },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
