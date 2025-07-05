@@ -182,12 +182,14 @@ export default function Navbar() {
 
             {/* Right: Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <Link
-                href="/portal"
+              <a
+                href="https://rapidflowfulfillment.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-100/80 hover:bg-gray-200/80 text-gray-900 hover:text-red-600 font-bold px-6 py-2 rounded-lg transition-all duration-300 border border-gray-300/50 hover:border-red-400/50 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm"
               >
                 Client portal
-              </Link>
+              </a>
 
               <Button
                 onClick={() => setIsModalOpen(true)}
@@ -247,7 +249,8 @@ export default function Navbar() {
                     {[
                       { href: "#our-process", label: "The process" },
                       { href: "#our-mission", label: "Our mission" },
-                      { href: "#meet-our-team", label: "Meet our team" },
+                      // { href: "#meet-our-team", label: "Meet our team" },
+                      { href: "#our-vision", label: "Our vision" },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
                         <a
@@ -277,12 +280,14 @@ export default function Navbar() {
                 </Link>
 
                 <div className="pt-4 border-t border-gray-300/50 space-y-3">
-                  <Link
-                    href="/portal"
+                  <a
+                    href="https://rapidflowfulfillment.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
                   >
                     Client portal
-                  </Link>
+                  </a>
 
                   <Button
                     onClick={() => {
