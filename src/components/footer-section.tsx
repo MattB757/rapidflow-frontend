@@ -12,22 +12,24 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 py-12 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Logo Section */}
-        <div className="md:col-span-1 mb-4">
-          <div>
-            <div className="flex items-center gap-2">
-              <Image
-                className="rounded-md"
-                src={logo}
-                width={40}
-                height={40}
-                alt="Logo"
-              />
-              <span className="text-xl font-semibold text-gray-800">
-                Rapid Flow Fulfillment
-              </span>
-            </div>
-            <span className="text-sm italic text-gray-700">
+        <div className="relative w-full mb-4">
+          {/* Logo + Brand Name on the left */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
+            <Image
+              className="rounded-md"
+              src={logo}
+              width={40}
+              height={40}
+              alt="Logo"
+            />
+            <span className="text-xl font-semibold text-gray-800">
+              Rapid Flow Fulfillment
+            </span>
+          </div>
+
+          {/* Tagline Centered */}
+          <div className="flex justify-center">
+            <span className="text-xs italic text-gray-700">
               Effortless Fulfillment. Every Time.
             </span>
           </div>
@@ -39,6 +41,14 @@ export default function Footer() {
           <div>
             <h3 className="text-red-500 font-semibold mb-4">About</h3>
             <ul className="space-y-2">
+              <li>
+                <a
+                  href="about"
+                  className="hover:text-red-500 transition-colors font-medium"
+                >
+                  About RFF
+                </a>
+              </li>
               <li>
                 <Link
                   href="/about#our-process"
@@ -84,14 +94,6 @@ export default function Footer() {
                   className="hover:text-red-500 transition-colors font-medium"
                 >
                   FAQ
-                </a>
-              </li>
-              <li>
-                <a
-                  href="about"
-                  className="hover:text-red-500 transition-colors font-medium"
-                >
-                  About RFF
                 </a>
               </li>
             </ul>
