@@ -440,47 +440,89 @@ export default function Register() {
                           >
                             🛒 ECommerce Platform
                           </SelectItem>
-                          <SelectItem
-                            value="web-design"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            🎨 Web Design
-                          </SelectItem>
+
                           <SelectItem
                             value="amazon"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             📦 Amazon Integration
                           </SelectItem>
+
                           <SelectItem
                             value="bigcommerce"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🏪 BigCommerce
                           </SelectItem>
+
                           <SelectItem
                             value="magento"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🔧 Magento
                           </SelectItem>
+
+                          <SelectItem
+                            value="other"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            ⚡ Custom Solution
+                          </SelectItem>
+
+                          <SelectItem
+                            value="salesforce"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            ☁️ Salesforce
+                          </SelectItem>
+
                           <SelectItem
                             value="shopify"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🛍️ Shopify
                           </SelectItem>
+
+                          <SelectItem
+                            value="square"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            🧾 Square
+                          </SelectItem>
+
+                          <SelectItem
+                            value="squarespace"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            🌐 Squarespace
+                          </SelectItem>
+
+                          <SelectItem
+                            value="tiktok"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            🎵 TikTok
+                          </SelectItem>
+
+                          <SelectItem
+                            value="walmart"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            🛒 Walmart
+                          </SelectItem>
+
+                          <SelectItem
+                            value="wix"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            🌟 Wix
+                          </SelectItem>
+
                           <SelectItem
                             value="woocommerce"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
                             🔌 WooCommerce
-                          </SelectItem>
-                          <SelectItem
-                            value="other"
-                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
-                          >
-                            ⚡ Custom Solution
                           </SelectItem>
                         </SelectContent>
                       </Select>
