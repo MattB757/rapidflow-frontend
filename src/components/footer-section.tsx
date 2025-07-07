@@ -9,8 +9,29 @@ import Image from "next/image";
 import logo from "@/assets/logoff.png";
 import Link from "next/link";
 import bbb from "@/assets/bbb.jpeg";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkDeviceType = () => {
+      const mobileRegex =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      setIsMobile(mobileRegex.test(navigator.userAgent));
+    };
+    checkDeviceType();
+  }, []);
+
+  const handlePhoneClick = (e: React.MouseEvent) => {
+    if (!isMobile) {
+      e.preventDefault();
+      navigator.clipboard.writeText("281-883-6053").then(() => {
+        alert("Phone number copied!");
+      });
+    }
+  };
+
   return (
     <footer className="bg-gray-50 py-12 px-6">
       <div className="max-w-6xl mx-auto">
@@ -120,20 +141,23 @@ export default function Footer() {
                 New Jersey
               </li>
               <li>
-                <Link
-                  href="/#quote-form"
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=Support@rapidflowfulfillment.com&su=Support&body=Hello"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-red-500 hover:text-red-400 transition-colors"
                 >
                   Support@rapidflowfulfillment.com
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  href="/#quote-form"
+                <a
+                  href="tel:2818836053"
+                  onClick={handlePhoneClick}
                   className="text-red-500 hover:text-red-400 transition-colors"
                 >
                   281-883-6053
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
