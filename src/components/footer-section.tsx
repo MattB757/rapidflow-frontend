@@ -118,7 +118,7 @@ export default function Footer() {
                   href="faq"
                   className="hover:text-red-500 transition-colors font-medium"
                 >
-                  Faq
+                  FAQ
                 </a>
               </li>
 
@@ -127,7 +127,7 @@ export default function Footer() {
                   href="testimonial"
                   className="hover:text-red-500 transition-colors font-medium"
                 >
-                  Testimonial
+                  Testimonials
                 </a>
               </li>
             </ul>

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+
 import {
   Quote,
   Star,
@@ -14,7 +15,6 @@ import {
   VolumeX,
 } from "lucide-react";
 import type React from "react";
-
 import { useState, useRef, useEffect } from "react";
 import ContactModal from "./common/ContactModal";
 
@@ -23,10 +23,14 @@ export default function Testimonials() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
   const [playingCardVideo, setPlayingCardVideo] = useState<number | null>(null);
-  const [mutedVideos, setMutedVideos] = useState<Set<number>>(new Set());
-  const [mutedCardVideos, setMutedCardVideos] = useState<Set<number>>(
-    new Set()
+  // Initialize all videos as muted to comply with browser autoplay policies
+  const [mutedVideos, setMutedVideos] = useState<Set<number>>(
+    new Set([1, 2, 4, 5])
   );
+  const [mutedCardVideos, setMutedCardVideos] = useState<Set<number>>(
+    new Set([1, 2, 4, 5])
+  );
+
   const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
   const cardVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
@@ -42,7 +46,7 @@ export default function Testimonials() {
       rating: 5,
       location: "Chicago",
       orderVolume: "500+",
-      videoUrl: reviewVideo, // Using your actual video
+      videoUrl: reviewVideo,
       thumbnailUrl: "/placeholder.svg?height=200&width=300",
       hasVideo: true,
     },
@@ -54,7 +58,7 @@ export default function Testimonials() {
       rating: 5,
       location: "Oregon",
       orderVolume: "1000+",
-      videoUrl: reviewVideo, // Using your actual video
+      videoUrl: reviewVideo,
       thumbnailUrl: "/placeholder.svg?height=200&width=300",
       hasVideo: true,
     },
@@ -66,7 +70,7 @@ export default function Testimonials() {
       rating: 5,
       location: "Texas",
       orderVolume: "750+",
-      hasVideo: false, // Text-only testimonial
+      hasVideo: false,
     },
     {
       id: 4,
@@ -76,7 +80,7 @@ export default function Testimonials() {
       rating: 5,
       location: "California",
       orderVolume: "2000+",
-      videoUrl: reviewVideo, // Using your actual video
+      videoUrl: reviewVideo,
       thumbnailUrl: "/placeholder.svg?height=200&width=300",
       hasVideo: true,
     },
@@ -88,7 +92,7 @@ export default function Testimonials() {
       rating: 5,
       location: "Oregon",
       orderVolume: "1500+",
-      videoUrl: reviewVideo, // Using your actual video
+      videoUrl: reviewVideo,
       thumbnailUrl: "/placeholder.svg?height=200&width=300",
       hasVideo: true,
     },
@@ -110,14 +114,14 @@ export default function Testimonials() {
 
     try {
       if (playingVideo === testimonialId) {
-        video.pause();
+        await video.pause();
         setPlayingVideo(null);
       } else {
         // Pause any currently playing video
         if (playingVideo !== null) {
           const currentVideo = videoRefs.current[playingVideo];
           if (currentVideo && !currentVideo.paused) {
-            currentVideo.pause();
+            await currentVideo.pause();
           }
         }
 
@@ -125,20 +129,31 @@ export default function Testimonials() {
         if (playingCardVideo !== null) {
           const currentCardVideo = cardVideoRefs.current[playingCardVideo];
           if (currentCardVideo && !currentCardVideo.paused) {
-            currentCardVideo.pause();
+            await currentCardVideo.pause();
           }
           setPlayingCardVideo(null);
         }
 
-        // Wait a bit to ensure pause operations complete
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        // Ensure video is properly loaded
+        if (video.readyState < 2) {
+          await new Promise((resolve) => {
+            const handleLoadedData = () => {
+              video.removeEventListener("loadeddata", handleLoadedData);
+              resolve(void 0);
+            };
+            video.addEventListener("loadeddata", handleLoadedData);
+            video.load();
+          });
+        }
 
-        // Now try to play the new video
+        // Set mute state before playing
+        video.muted = mutedVideos.has(testimonialId);
+
         await video.play();
         setPlayingVideo(testimonialId);
       }
     } catch (error) {
-      console.log("Video operation interrupted:", error);
+      console.log("Video operation failed:", error);
       setPlayingVideo(null);
     }
   };
@@ -153,14 +168,14 @@ export default function Testimonials() {
 
     try {
       if (playingCardVideo === testimonialId) {
-        video.pause();
+        await video.pause();
         setPlayingCardVideo(null);
       } else {
         // Pause any currently playing card video
         if (playingCardVideo !== null) {
           const currentVideo = cardVideoRefs.current[playingCardVideo];
           if (currentVideo && !currentVideo.paused) {
-            currentVideo.pause();
+            await currentVideo.pause();
           }
         }
 
@@ -168,20 +183,31 @@ export default function Testimonials() {
         if (playingVideo !== null) {
           const mainVideo = videoRefs.current[playingVideo];
           if (mainVideo && !mainVideo.paused) {
-            mainVideo.pause();
+            await mainVideo.pause();
           }
           setPlayingVideo(null);
         }
 
-        // Wait a bit to ensure pause operations complete
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        // Ensure video is properly loaded
+        if (video.readyState < 2) {
+          await new Promise((resolve) => {
+            const handleLoadedData = () => {
+              video.removeEventListener("loadeddata", handleLoadedData);
+              resolve(void 0);
+            };
+            video.addEventListener("loadeddata", handleLoadedData);
+            video.load();
+          });
+        }
 
-        // Now try to play the new video
+        // Set mute state before playing
+        video.muted = mutedCardVideos.has(testimonialId);
+
         await video.play();
         setPlayingCardVideo(testimonialId);
       }
     } catch (error) {
-      console.log("Card video operation interrupted:", error);
+      console.log("Card video operation failed:", error);
       setPlayingCardVideo(null);
     }
   };
@@ -217,12 +243,49 @@ export default function Testimonials() {
     setMutedCardVideos(newMutedCardVideos);
   };
 
+  // Initialize video properties when refs are set
+  useEffect(() => {
+    const initializeVideos = () => {
+      // Initialize main videos
+      Object.entries(videoRefs.current).forEach(([id, video]) => {
+        if (video) {
+          const testimonialId = Number.parseInt(id);
+          video.muted = mutedVideos.has(testimonialId);
+          video.playsInline = true;
+          video.preload = "metadata";
+        }
+      });
+
+      // Initialize card videos
+      Object.entries(cardVideoRefs.current).forEach(([id, video]) => {
+        if (video) {
+          const testimonialId = Number.parseInt(id);
+          video.muted = mutedCardVideos.has(testimonialId);
+          video.playsInline = true;
+          video.preload = "metadata";
+        }
+      });
+    };
+
+    initializeVideos();
+  }, [mutedVideos, mutedCardVideos]);
+
   useEffect(() => {
     const handleVideoEnd = (testimonialId: number) => {
       setPlayingVideo(null);
     };
 
     const handleCardVideoEnd = (testimonialId: number) => {
+      setPlayingCardVideo(null);
+    };
+
+    const handleVideoError = (testimonialId: number, error: Event) => {
+      console.log(`Video ${testimonialId} error:`, error);
+      setPlayingVideo(null);
+    };
+
+    const handleCardVideoError = (testimonialId: number, error: Event) => {
+      console.log(`Card video ${testimonialId} error:`, error);
       setPlayingCardVideo(null);
     };
 
@@ -233,10 +296,15 @@ export default function Testimonials() {
       if (video) {
         const testimonialId = Number.parseInt(id);
         const endHandler = () => handleVideoEnd(testimonialId);
+        const errorHandler = (e: Event) => handleVideoError(testimonialId, e);
+
         video.addEventListener("ended", endHandler);
-        videoCleanupFunctions.push(() =>
-          video.removeEventListener("ended", endHandler)
-        );
+        video.addEventListener("error", errorHandler);
+
+        videoCleanupFunctions.push(() => {
+          video.removeEventListener("ended", endHandler);
+          video.removeEventListener("error", errorHandler);
+        });
       }
     });
 
@@ -244,10 +312,16 @@ export default function Testimonials() {
       if (video) {
         const testimonialId = Number.parseInt(id);
         const endHandler = () => handleCardVideoEnd(testimonialId);
+        const errorHandler = (e: Event) =>
+          handleCardVideoError(testimonialId, e);
+
         video.addEventListener("ended", endHandler);
-        cardVideoCleanupFunctions.push(() =>
-          video.removeEventListener("ended", endHandler)
-        );
+        video.addEventListener("error", errorHandler);
+
+        cardVideoCleanupFunctions.push(() => {
+          video.removeEventListener("ended", endHandler);
+          video.removeEventListener("error", errorHandler);
+        });
       }
     });
 
@@ -386,6 +460,7 @@ export default function Testimonials() {
                       className="w-full h-full object-cover"
                       poster={testimonials[currentSlide].thumbnailUrl}
                       muted={mutedVideos.has(testimonials[currentSlide].id)}
+                      playsInline
                       preload="metadata"
                     >
                       <source
@@ -493,13 +568,13 @@ export default function Testimonials() {
                       className="w-full h-full object-cover"
                       poster={testimonial.thumbnailUrl}
                       muted={mutedCardVideos.has(testimonial.id)}
+                      playsInline
                       preload="metadata"
                       onClick={(e) => toggleCardVideo(testimonial.id, e)}
                     >
                       <source src={testimonial.videoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-
                     {/* Video Controls Overlay */}
                     <div
                       className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer hover:bg-black/60 transition-all"
@@ -513,7 +588,6 @@ export default function Testimonials() {
                         )}
                       </div>
                     </div>
-
                     {/* Mute Button for Card Video */}
                     <button
                       onClick={(e) => toggleCardMute(testimonial.id, e)}
@@ -525,13 +599,11 @@ export default function Testimonials() {
                         <Volume2 className="w-4 h-4 text-white" />
                       )}
                     </button>
-
                     {/* Video Badge */}
                     <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium">
                       📹 Video
                     </div>
                   </div>
-
                   <div
                     className="p-6 cursor-pointer"
                     onClick={() => setCurrentSlide(index)}
@@ -613,7 +685,6 @@ export default function Testimonials() {
                   </div>
                 </div>
               )}
-
               {/* Hover Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 to-red-600/0 group-hover:from-red-500/10 group-hover:to-red-600/10 transition-all duration-500 pointer-events-none"></div>
             </div>
