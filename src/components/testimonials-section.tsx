@@ -35,7 +35,7 @@ export default function Testimonials() {
   const cardVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
   // Your actual video from public folder
-  const reviewVideo = "/Video_Ready_Check_It_Out_.mp4";
+  const reviewVideo = "/review.mp4";
 
   const testimonials = [
     {
