@@ -3,50 +3,42 @@
 import React from "react";
 
 import { useEffect, useState } from "react";
-import {
-  Eye,
-  Target,
-  Rocket,
-  Globe,
-  TrendingUp,
-  Zap,
-  Star,
-} from "lucide-react";
+import { Eye, Target, Zap, Star } from "lucide-react";
 
 export default function OurVisionSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeVision, setActiveVision] = useState(0);
+  // const [activeVision, setActiveVision] = useState(0);
 
-  const visionPoints = [
-    {
-      icon: Globe,
-      title: "Global Expansion",
-      description:
-        "Becoming the world's most trusted fulfillment partner for e-commerce businesses",
-      stat: "50+ Countries",
-    },
-    {
-      icon: Rocket,
-      title: "Innovation Leader",
-      description:
-        "Pioneering cutting-edge technology solutions for seamless order fulfillment",
-      stat: "99.9% Accuracy",
-    },
-    {
-      icon: TrendingUp,
-      title: "Sustainable Growth",
-      description:
-        "Building eco-friendly operations while scaling businesses responsibly",
-      stat: "Carbon Neutral",
-    },
-    {
-      icon: Zap,
-      title: "Lightning Fast",
-      description:
-        "Setting new industry standards for speed and efficiency in fulfillment",
-      stat: "24hr Turnaround",
-    },
-  ];
+  // const visionPoints = [
+  //   {
+  //     icon: Globe,
+  //     title: "Global Expansion",
+  //     description:
+  //       "Becoming the world's most trusted fulfillment partner for e-commerce businesses",
+  //     stat: "50+ Countries",
+  //   },
+  //   {
+  //     icon: Rocket,
+  //     title: "Innovation Leader",
+  //     description:
+  //       "Pioneering cutting-edge technology solutions for seamless order fulfillment",
+  //     stat: "99.9% Accuracy",
+  //   },
+  //   {
+  //     icon: TrendingUp,
+  //     title: "Sustainable Growth",
+  //     description:
+  //       "Building eco-friendly operations while scaling businesses responsibly",
+  //     stat: "Carbon Neutral",
+  //   },
+  //   {
+  //     icon: Zap,
+  //     title: "Lightning Fast",
+  //     description:
+  //       "Setting new industry standards for speed and efficiency in fulfillment",
+  //     stat: "24hr Turnaround",
+  //   },
+  // ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,13 +58,13 @@ export default function OurVisionSection() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveVision((prev) => (prev + 1) % visionPoints.length);
-    }, 4000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveVision((prev) => (prev + 1) % visionPoints.length);
+  //   }, 4000);
 
-    return () => clearInterval(interval);
-  }, [visionPoints.length]);
+  //   return () => clearInterval(interval);
+  // }, [visionPoints.length]);
 
   return (
     <section
@@ -365,12 +357,26 @@ export default function OurVisionSection() {
                   </p>
                 </div>
               </div>
-
-             
             </div>
 
             {/* Right Side - Vision Points Carousel */}
-            <div
+            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-3xl p-10 border border-white/30 shadow-2xl">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-xl shadow-red-500/50">
+                  <Zap className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-3xl font-black text-white">
+                  Lightning Fast
+                </h3>
+              </div>
+              <p className="text-xl text-gray-300 leading-relaxed">
+                We promise to be more than just a service provider - we&apos;re
+                your strategic partner in growth, committed to innovation,
+                sustainability, and excellence in every package we handle.
+              </p>
+            </div>
+
+            {/* <div
               className={`transition-all duration-1000 delay-500 transform ${
                 isVisible
                   ? "translate-x-0 opacity-100"
@@ -378,7 +384,7 @@ export default function OurVisionSection() {
               }`}
             >
               <div className="relative">
-                {/* Main Vision Card */}
+        
                 <div className="bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-2xl rounded-3xl p-12 border border-white/30 shadow-2xl min-h-[400px] flex flex-col justify-center">
                   <div className="text-center">
                     <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-red-500/50 animate-pulse">
@@ -402,7 +408,7 @@ export default function OurVisionSection() {
                   </div>
                 </div>
 
-                {/* Vision Point Indicators */}
+                
                 <div className="flex justify-center gap-4 mt-8">
                   {visionPoints.map((_, index) => (
                     <button
@@ -417,11 +423,11 @@ export default function OurVisionSection() {
                   ))}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Bottom Stats Section */}
-          <div
+          {/* <div
             className={`transition-all duration-1000 delay-700 transform ${
               isVisible
                 ? "translate-y-0 opacity-100"
@@ -463,7 +469,7 @@ export default function OurVisionSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
