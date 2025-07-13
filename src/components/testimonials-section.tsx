@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
@@ -17,77 +18,75 @@ import {
 import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import ContactModal from "./common/ContactModal";
+import {
+  useGetTestimonialsQuery,
+  useGetTitleAndDescriptionQuery,
+} from "@/redux/api/testimonialApi";
 
 export default function Testimonials() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
   const [playingCardVideo, setPlayingCardVideo] = useState<number | null>(null);
-  // Initialize all videos as muted to comply with browser autoplay policies
-  const [mutedVideos, setMutedVideos] = useState<Set<number>>(
-    new Set([1, 2, 3, 4, 5])
-  );
+
+  const [mutedVideos, setMutedVideos] = useState<Set<number>>(new Set());
   const [mutedCardVideos, setMutedCardVideos] = useState<Set<number>>(
-    new Set([1, 2, 3, 4, 5])
+    new Set()
   );
 
   const videoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
   const cardVideoRefs = useRef<{ [key: number]: HTMLVideoElement | null }>({});
 
-  // Your actual video from public folder
-  const reviewVideo = "/review.mp4";
+  // title and description api
+  const { data: titleData } = useGetTitleAndDescriptionQuery();
+  const { title, description } = titleData?.data || {};
 
-  const testimonials = [
-    {
-      id: 1,
-      text: "Pallet went in and out in one day with HexPrep's Chicago warehouse! Phenomenal rates and Khai was able to quickly report issues with how the supplier sent the goods. Will continue to work with these gentlemen for the foreseeable future.",
-      name: "Morgan",
-      rating: 5,
-      videoUrl: reviewVideo,
-      hasVideo: true,
-    },
-    {
-      id: 2,
-      text: "So far the staff at Hex-Prep have been beyond helpful and friendly! They're quick to respond to any of my questions or concerns about my orders and the turnaround time for my FBM shipments is crazy fast.",
-      name: "Quinn",
-      rating: 5,
-      videoUrl: reviewVideo,
-      hasVideo: true,
-    },
-    {
-      id: 3,
-      text: "Great communication and fast turnaround time. One of the best smaller prep centers I've worked with! I had no issues and will continue working with these guys again!",
-      name: "Brody",
-      rating: 5,
-      videoUrl: reviewVideo,
-      hasVideo: true,
-    },
-    {
-      id: 4,
-      text: "HexPrep has been a game changer for my Amazon business. Their clear communication keeps me informed every step of the way. I highly recommend HexPrep to any seller looking for reliable and efficient prep services!",
-      name: "Hector",
-      rating: 5,
-      videoUrl: reviewVideo,
-      hasVideo: true,
-    },
-    {
-      id: 5,
-      text: "Started using Hexprep about 2 months ago, the team has super quick communication and always makes a effort to make sure orders go out on time! Super helpful this Q4 pushing out all my orders.",
-      name: "Henry",
-      rating: 5,
-      videoUrl: reviewVideo,
-      hasVideo: true,
-    },
-  ];
+  // Get testimonials from API
+  const {
+    data: testimonialApiData,
+    isLoading,
+    isError,
+  } = useGetTestimonialsQuery(undefined);
+
+  // Process API data and add hasVideo flag
+  const testimonials =
+    testimonialApiData?.data?.map((testimonial: any, index: any) => ({
+      id: index + 1, // Generate unique ID
+      text: testimonial.text,
+      name: testimonial.name,
+      rating: testimonial.rating,
+      videoUrl: testimonial.videoUrl,
+      hasVideo: !!testimonial.videoUrl, // Add hasVideo flag based on videoUrl existence
+    })) || [];
+
+  // Initialize muted states based on testimonials length
+  useEffect(() => {
+    if (testimonials.length > 0) {
+      const videoIds = testimonials.map((t: any) => t.id);
+      setMutedVideos(new Set(videoIds));
+      setMutedCardVideos(new Set(videoIds));
+    }
+  }, [testimonials.length]);
+
+  // Reset current slide if it's out of bounds
+  useEffect(() => {
+    if (testimonials.length > 0 && currentSlide >= testimonials.length) {
+      setCurrentSlide(0);
+    }
+  }, [testimonials.length, currentSlide]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    if (testimonials.length > 0) {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }
   };
 
   const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
+    if (testimonials.length > 0) {
+      setCurrentSlide(
+        (prev) => (prev - 1 + testimonials.length) % testimonials.length
+      );
+    }
   };
 
   const toggleVideo = async (testimonialId: number) => {
@@ -313,6 +312,50 @@ export default function Testimonials() {
     };
   }, []);
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500 mx-auto"></div>
+            <p className="text-white mt-4">Loading testimonials...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (isError) {
+    return (
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center">
+            <p className="text-red-400">
+              Error loading testimonials. Please try again later.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // No testimonials state
+  if (!testimonials || testimonials.length === 0) {
+    return (
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center">
+            <p className="text-white">
+              No testimonials available at the moment.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-black overflow-hidden">
       {/* Animated Background Elements */}
@@ -334,54 +377,14 @@ export default function Testimonials() {
             </span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 mb-6 leading-tight">
-            Trusted by
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-red-600">
-              Industry Leaders
-            </span>
+            {title || "What Our Clients Say"}
           </h2>
+
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of successful businesses who have transformed their
-            operations with our solutions
+            {description ||
+              "Real stories from satisfied customers who've experienced our exceptional service and results."}
           </p>
         </div>
-
-        {/* Stats Bar */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-500 group">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Users className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-1">50+</div>
-                <div className="text-gray-400">Happy Clients</div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-500 group">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Star className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-1">5.0★</div>
-                <div className="text-gray-400">Average Rating</div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-red-400/30 transition-all duration-500 group">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                <TrendingUp className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-white mb-1">48hrs</div>
-                <div className="text-gray-400">Avg Response</div>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
         {/* Main Testimonial Slider with Video */}
         <div className="relative mb-16">
@@ -394,26 +397,28 @@ export default function Testimonials() {
                     <Quote className="w-10 h-10 text-white" />
                   </div>
                   <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-6 h-6 fill-yellow-400 text-yellow-400"
-                      />
-                    ))}
+                    {[...Array(testimonials[currentSlide]?.rating || 5)].map(
+                      (_, i) => (
+                        <Star
+                          key={i}
+                          className="w-6 h-6 fill-yellow-400 text-yellow-400"
+                        />
+                      )
+                    )}
                   </div>
                 </div>
                 <blockquote className="text-2xl lg:text-3xl text-white leading-relaxed font-light">
-                  &quot;{testimonials[currentSlide].text}&quot;
+                  &quot;{testimonials[currentSlide]?.text}&quot;
                 </blockquote>
                 <div className="flex items-center gap-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-xl">
-                      {testimonials[currentSlide].name.charAt(0)}
+                      {testimonials[currentSlide]?.name?.charAt(0) || "U"}
                     </span>
                   </div>
                   <div>
                     <div className="text-xl font-bold text-white">
-                      {testimonials[currentSlide].name}
+                      {testimonials[currentSlide]?.name}
                     </div>
                   </div>
                 </div>
@@ -421,7 +426,7 @@ export default function Testimonials() {
 
               {/* Video Player */}
               <div className="relative">
-                {testimonials[currentSlide].hasVideo ? (
+                {testimonials[currentSlide]?.hasVideo ? (
                   <div className="relative w-full h-80 bg-black rounded-3xl overflow-hidden border border-white/10">
                     <video
                       ref={(el) => {
@@ -494,7 +499,7 @@ export default function Testimonials() {
                 <ArrowLeft className="w-6 h-6 text-white group-hover:text-red-400 transition-colors" />
               </button>
               <div className="flex items-center gap-3">
-                {testimonials.map((_, index) => (
+                {testimonials.map((_: any, index: any) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
@@ -518,7 +523,7 @@ export default function Testimonials() {
 
         {/* Testimonial Grid with Video Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial: any, index: any) => (
             <div
               key={testimonial.id}
               className={`group relative overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 ${
