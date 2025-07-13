@@ -100,9 +100,9 @@ export default function AboutSection() {
                     </div>
                     <div>
                       <div className="text-2xl font-black text-white mb-1">
-                        Reliability
+                        {fra?.fastTitle || "Reliability"}
                       </div>
-                      <div className="text-gray-400">{fra?.fast || "Fast"}</div>
+                      <div className="text-gray-400">{fra?.fastDescription || "Reliability"}</div>
                     </div>
                   </div>
                 </div>
@@ -115,10 +115,10 @@ export default function AboutSection() {
                     </div>
                     <div>
                       <div className="text-2xl font-black text-white mb-1">
-                        Flexible Pricing
+                        {fra?.reliableTitle || "Flexible Pricing"}
                       </div>
                       <div className="text-gray-400">
-                        {fra?.reliable || "Reliable"}
+                        {fra?.reliableDescription || "Flexible Pricing"}
                       </div>
                     </div>
                   </div>
@@ -132,10 +132,10 @@ export default function AboutSection() {
                     </div>
                     <div>
                       <div className="text-2xl font-black text-white mb-1">
-                        Flexible Solutions
+                        {fra?.affordableTitle || "Flexible Solutions"}
                       </div>
                       <div className="text-gray-400">
-                        {fra?.affordable || "Affordable"}
+                        {fra?.affordableDescription || "Affordable"}
                       </div>
                     </div>
                   </div>
