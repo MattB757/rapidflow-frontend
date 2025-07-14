@@ -114,13 +114,13 @@ export default function Navbar() {
                         href: "/about#our-process",
                         icon: <Settings className="w-5 h-5 text-white" />,
                         title: "The process",
-                        desc: "What goes on behind the scenes",
+                        desc: "Streamlined from start to finish.",
                       },
                       {
                         href: "/about#our-mission",
                         icon: <Target className="w-5 h-5 text-white" />,
                         title: "Our mission",
-                        desc: "What we strive for",
+                        desc: "Simplifying fulfillment.",
                       },
                       // {
                       //   href: "/about#meet-our-team",
