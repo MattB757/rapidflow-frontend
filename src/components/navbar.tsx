@@ -113,13 +113,19 @@ export default function Navbar() {
                       {
                         href: "/about#our-process",
                         icon: <Settings className="w-5 h-5 text-white" />,
-                        title: "The process",
+                        title: "Our Process",
                         desc: "Streamlined from start to finish.",
+                      },
+                      {
+                        href: "/about#our-vision",
+                        icon: <Brain className="w-5 h-5 text-white" />,
+                        title: " Our Services",
+                        desc: "Built for every channel.",
                       },
                       {
                         href: "/about#our-mission",
                         icon: <Target className="w-5 h-5 text-white" />,
-                        title: "Our mission",
+                        title: "Our Mission",
                         desc: "Simplifying fulfillment.",
                       },
                       // {
@@ -128,12 +134,6 @@ export default function Navbar() {
                       //   title: "Meet our team",
                       //   desc: "Who we are",
                       // },
-                      {
-                        href: "/about#our-vision",
-                        icon: <Brain className="w-5 h-5 text-white" />,
-                        title: "Our vision",
-                        desc: "Shaping the future",
-                      },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
                         <a
@@ -248,10 +248,10 @@ export default function Navbar() {
                     className="w-64 bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300"
                   >
                     {[
-                      { href: "#our-process", label: "The process" },
-                      { href: "#our-mission", label: "Our mission" },
+                      { href: "#our-process", label: "Our Process" },
+                      { href: "#our-vision", label: " Our Services" },
+                      { href: "#our-mission", label: "Our Mission" },
                       // { href: "#meet-our-team", label: "Meet our team" },
-                      { href: "#our-vision", label: "Our vision" },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
                         <a

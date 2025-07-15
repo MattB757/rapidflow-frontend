@@ -51,8 +51,7 @@ export default function Faq() {
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Find answers to common questions about our Amazon FBA prep services,
-            pricing, and processes.
+           Find answers to common questions about our 3PL services, pricing, and processes
           </p>
         </div>
       </section>

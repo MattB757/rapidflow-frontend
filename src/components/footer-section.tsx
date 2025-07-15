@@ -79,7 +79,15 @@ export default function Footer() {
                   href="/about#our-process"
                   className="hover:text-red-500 transition-colors"
                 >
-                  The process
+                  Our Process
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about#our-vision"
+                  className="hover:text-red-500 transition-colors"
+                >
+                   Our Services
                 </Link>
               </li>
               <li>
@@ -87,9 +95,10 @@ export default function Footer() {
                   href="/about#our-mission"
                   className="hover:text-red-500 transition-colors"
                 >
-                  Our mission
+                  Our Mission
                 </Link>
               </li>
+              
               {/* <li>
                 <Link
                   href="/about#meet-our-team"
@@ -98,14 +107,7 @@ export default function Footer() {
                   Meet the team
                 </Link>
               </li> */}
-              <li>
-                <Link
-                  href="/about#our-vision"
-                  className="hover:text-red-500 transition-colors"
-                >
-                  Our vision
-                </Link>
-              </li>
+              
             </ul>
           </div>
 

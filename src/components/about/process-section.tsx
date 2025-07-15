@@ -93,10 +93,10 @@ export default function ProcessSection() {
         <div className="text-center mb-16">
           <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-6">
             <span className="text-red-600 font-semibold text-sm uppercase tracking-wider">
-             Sets Us Apart
+              What Sets Us Apart
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-6xl font-black text-red-600 mb-6">
             {data?.data?.[0]?.title ?? "Our Process"}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -269,6 +269,13 @@ export default function ProcessSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 animate-pulse"></div>
               </div>
             </div>
+            {/* Progress Caption */}
+            <p className="text-center mt-6 text-gray-600 text-lg font-medium">
+              {/* {/* Progress Caption */}{" "}
+              <span className="font-semibold text-red-600">
+                The Rapid Flow Formula
+              </span>
+            </p>
           </div>
         </div>
       </div>
