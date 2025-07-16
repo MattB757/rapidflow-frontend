@@ -561,6 +561,30 @@ export default function Register() {
                               <div>Walmart</div>
                             </div>
                           </SelectItem>
+                          <SelectItem
+                            value="walmart"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div>
+                                {" "}
+                                <TbBrandWalmart />{" "}
+                              </div>
+                              <div>Private Label</div>
+                            </div>
+                          </SelectItem>
+                          <SelectItem
+                            value="walmart"
+                            className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div>
+                                {" "}
+                                <TbBrandWalmart />{" "}
+                              </div>
+                              <div>Retail</div>
+                            </div>
+                          </SelectItem>
 
                           {/* <SelectItem
                             value="wix"
@@ -630,7 +654,7 @@ export default function Register() {
                             value="500"
                             className="hover:bg-red-50 focus:bg-red-50 text-gray-900 rounded-lg py-3"
                           >
-                            0 - 500+ orders (Minimum Required)
+                            0 - 500+ orders
                           </SelectItem>
                           <SelectItem
                             value="500-1000"
