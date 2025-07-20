@@ -10,6 +10,7 @@ import {
   FaFacebook,
   FaInstagram,
   FaLinkedin,
+  FaTiktok,
   FaWhatsapp,
 } from "react-icons/fa";
 
@@ -72,14 +73,14 @@ export default function Footer() {
   const getSocialIcon = (name: string): JSX.Element => {
     const platformName = name.toLowerCase();
     switch (platformName) {
-      case "instragram":
-        return <FaInstagram className="w-5 h-5" />;
-      // case "whatsApp":
-      //   return <FaWhatsapp className="w-5 h-5" />;
-      case "linkedin":
-        return <FaLinkedin className="w-5 h-5" />;
       case "facebook":
         return <FaFacebook className="w-5 h-5" />;
+      case "linkedin":
+        return <FaLinkedin className="w-5 h-5" />;
+      case "instragram":
+        return <FaInstagram className="w-5 h-5" />;
+      case "tiktok":
+        return <FaTiktok className="w-4 h-4" />;
       default:
         return <FaWhatsapp className="w-5 h-5" />;
     }

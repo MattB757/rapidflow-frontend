@@ -8,6 +8,7 @@ export default function OurMissionSection() {
 
   const { data, isLoading, isError } = useGetMissionsQuery({});
   const mission = data?.data?.[0];
+  console.log(mission, "kldfkl")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
