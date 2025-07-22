@@ -48,14 +48,14 @@ export default function AboutSection() {
                 }`}
               >
                 <div className="inline-block bg-red-500/10 backdrop-blur-sm px-6 py-3 rounded-full border border-red-500/20 mb-6">
-  <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
-    About{" "}
-    <span className="font-bold text-red-500">
-      Rapid Flow Fulfillment
-    </span>
-  </span>
-</div>
-
+                  <span className="text-red-400 font-semibold text-sm uppercase tracking-wider">
+                    {fra?.tag?.split(" ").slice(0, 1).join(" ") || "About"}{" "}
+                    <span className="font-bold text-red-500">
+                      {fra?.tag?.split(" ").slice(-3).join(" ") ||
+                        "Rapid Flow Fulfillment"}
+                    </span>
+                  </span>
+                </div>
 
                 <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-4">
                   <span className="text-white">
