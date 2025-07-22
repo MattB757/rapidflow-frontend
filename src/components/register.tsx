@@ -63,8 +63,8 @@ export default function Register() {
     console.log(error);
   }
 
-  console.log(isSuccess);
-  console.log(data?.data);
+  // console.log(isSuccess);
+  // console.log(data?.data);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({

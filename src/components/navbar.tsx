@@ -15,12 +15,17 @@ import ContactModal from "./common/ContactModal";
 import Image from "next/image";
 import logo from "@/assets/logoff.png";
 import Link from "next/link";
+import { useGetClientPortalQuery } from "@/redux/api/clientPortalApi";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data: clientPortalData } = useGetClientPortalQuery({});
+  const portal = clientPortalData?.data?.[0];
+  // console.log("Client Portal Data:", portal);
 
   const handleDesktopMouseEnter = () => setIsDesktopDropdownOpen(true);
   const handleDesktopMouseLeave = () => setIsDesktopDropdownOpen(false);
@@ -192,12 +197,12 @@ export default function Navbar() {
             {/* Right: Buttons */}
             <div className="hidden md:flex items-center space-x-4">
               <a
-                href="https://rapidflowfulfillment.com"
+                href={portal?.link || "https://rapidflowfulfillment.com"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gray-100/80 hover:bg-gray-200/80 text-gray-900 hover:text-red-600 font-bold px-6 py-2 rounded-lg transition-all duration-300 border border-gray-300/50 hover:border-red-400/50 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm"
               >
-                Client portal
+                {portal?.name || "Client Portal"}
               </a>
 
               <Button
