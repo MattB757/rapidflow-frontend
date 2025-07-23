@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Rapid Flow Fulfillment",
-  description: "Modern Matthew application interface",
+  description: "Modern Matthew",
 };
 
 export default function RootLayout({
