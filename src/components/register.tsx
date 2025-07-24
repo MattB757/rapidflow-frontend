@@ -33,14 +33,14 @@ import {
 } from "lucide-react";
 import { FaAmazon } from "react-icons/fa";
 import { TbBrandWalmart } from "react-icons/tb";
-import { submitQuoteRequest, type QuoteFormData } from "@/lib/quote-actions";
+// import { submitQuoteRequest, type QuoteFormData } from "@/lib/quote-actions";
 import { MdOutlinePrivateConnectivity } from "react-icons/md";
 import { useGetQuoteLeftQuery } from "@/redux/api/quoteleftApi";
 import Swal from "sweetalert2";
 
 export default function Register() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState<QuoteFormData>({
+  const [formData, setFormData] = useState<any>({
     firstName: "",
     lastName: "",
     email: "",
@@ -77,37 +77,37 @@ export default function Register() {
     setIsSubmitting(true);
 
     try {
-      const result = await submitQuoteRequest(formData);
+      // const result = await submitQuoteRequest(formData);
 
-      if (result.success) {
-        await Swal.fire({
-          title: "Thank you for reaching out!",
-          text: "We will get back to you soon. – The Rapid Flow Fulfillment Team",
-          icon: "success",
-          confirmButtonText: "OK",
-          confirmButtonColor: "#dc2626",
-          background: "#ffffff",
-          color: "#374151",
-          customClass: {
-            popup: "rounded-2xl shadow-2xl",
-            title: "text-xl font-bold",
-            confirmButton: "rounded-lg px-6 py-2 font-semibold",
-          },
-        });
+      // if (result.success) {
+      //   await Swal.fire({
+      //     title: "Thank you for reaching out!",
+      //     text: "We will get back to you soon. – The Rapid Flow Fulfillment Team",
+      //     icon: "success",
+      //     confirmButtonText: "OK",
+      //     confirmButtonColor: "#dc2626",
+      //     background: "#ffffff",
+      //     color: "#374151",
+      //     customClass: {
+      //       popup: "rounded-2xl shadow-2xl",
+      //       title: "text-xl font-bold",
+      //       confirmButton: "rounded-lg px-6 py-2 font-semibold",
+      //     },
+      //   });
 
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          company: "",
-          website: "",
-          serviceType: "",
-          customService: "",
-          budget: "",
-        });
-      } else {
-      }
+      //   setFormData({
+      //     firstName: "",
+      //     lastName: "",
+      //     email: "",
+      //     phone: "",
+      //     company: "",
+      //     website: "",
+      //     serviceType: "",
+      //     customService: "",
+      //     budget: "",
+      //   });
+      // } else {
+      // }
     } catch (error: any) {
       console.error("Error submitting form:", error);
       await Swal.fire({
