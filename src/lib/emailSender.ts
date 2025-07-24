@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import config from "./config";
 // import config from "./config";
 
 interface ApiError extends Error {
@@ -21,8 +22,8 @@ const emailSender = async (subject: string, email: string, html: string) => {
     port: 587,
     secure: false,
     auth: {
-      user: "rapidflowfulfillment@gmail.com",
-      pass: "tmfr tsmz nrim cuoy", // Must be App Password
+      user: config.emailSender.email,
+      pass: config.emailSender.app_pass, // Must be App Password
     },
     tls: {
       ciphers: "SSLv3",
@@ -30,7 +31,7 @@ const emailSender = async (subject: string, email: string, html: string) => {
   });
 
   const mailOptions = {
-    from: `"Rapid Flow" <rapidflowfulfillment@gmail.com>`,
+    from: `"Rapid Flow" <${config.emailSender.email}>`,
     to: email,
     subject,
     html,
