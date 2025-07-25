@@ -8,7 +8,7 @@ export default function OurMissionSection() {
 
   const { data, isLoading, isError } = useGetMissionsQuery({});
   const mission = data?.data?.[0];
-  console.log(mission, "kldfkl")
+  // console.log(mission, "kldfkl")
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,10 +29,7 @@ export default function OurMissionSection() {
   }, []);
 
   return (
-    <section
-      id="our-mission"
-      className="bg-black py-10 px-6 relative overflow-hidden"
-    >
+    <section className="bg-black py-10 px-6 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -83,6 +80,7 @@ export default function OurMissionSection() {
           </div>
 
           <div
+            id="our-mission"
             className={`transition-all duration-1000 delay-300 transform ${
               isVisible
                 ? "translate-x-0 opacity-100"

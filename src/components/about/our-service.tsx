@@ -35,7 +35,7 @@ export default function OurVisionSection() {
 
   return (
     <section
-      id="our-services"
+      
       className="bg-gradient-to-br from-gray-900 via-black to-gray-900 py-32 px-6 relative overflow-hidden min-h-screen"
     >
       {/* Enhanced Background Effects */}
@@ -92,7 +92,7 @@ export default function OurVisionSection() {
           {/* Enhanced Vision Cards Grid */}
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Our Vision Card */}
-            <div
+            <div id="our-services"
               className={`transition-all duration-1000 delay-300 transform ${
                 isVisible
                   ? "translate-x-0 opacity-100"
@@ -115,7 +115,7 @@ export default function OurVisionSection() {
             </div>
 
             {/* Our Promise Card */}
-            <div
+            <div 
               className={`transition-all duration-1000 delay-500 transform ${
                 isVisible
                   ? "translate-x-0 opacity-100"
@@ -161,7 +161,7 @@ export default function OurVisionSection() {
             </div>
 
             {/* Kitting & Custom Projects Card */}
-            <div
+            <div 
               className={`transition-all duration-1000 delay-900 transform ${
                 isVisible
                   ? "translate-x-0 opacity-100"

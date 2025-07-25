@@ -15,8 +15,13 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Rapid Flow Fulfillment",
-  description: "Modern Matthew",
+  title: "Rapid Flow Fulfillment | Custom 3PL & Ecommerce Fulfillment Services",
+  description:
+    "Flexible and affordable 3PL fulfillment for ecommerce, retail, and more. Contact Rapid Flow Fulfillment for tailored logistics solutions, real-time tracking, and top-tier service",
+  metadataBase: new URL("https://rapidflowfulfillment.com"),
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

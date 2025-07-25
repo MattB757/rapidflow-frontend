@@ -52,7 +52,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
               <div className="bg-white rounded-lg p-4 border border-red-200">
                 <a
-                  href="mailto:hexprep@gmail.com"
+                  href="mailto:rapidflowfulfillment@gmail.com"
                   className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-semibold transition-colors duration-200 group"
                 >
                   <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
@@ -69,7 +69,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-3 mt-6">
             <a
-              href="mailto:hexprep@gmail.com"
+              href="mailto:rapidflowfulfillment@gmail.com"
               className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 text-center shadow-lg hover:shadow-red-500/25 group"
             >
               <span className="flex items-center justify-center space-x-2">

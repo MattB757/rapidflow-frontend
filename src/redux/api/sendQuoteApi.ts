@@ -5,7 +5,7 @@ const sendQuoteApi = baseApi.injectEndpoints({
     // send quote
     sendQuote: build.mutation({
       query: (data) => ({
-        url: "send-quote",
+        url: "/send-quote",
         method: "POST",
         body: data,
       }),

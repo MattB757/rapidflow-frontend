@@ -140,12 +140,7 @@ export default function Navbar() {
                         title: "Our Mission",
                         desc: "Simplifying fulfillment.",
                       },
-                      // {
-                      //   href: "/about#meet-our-team",
-                      //   icon: <Brain className="w-5 h-5 text-white" />,
-                      //   title: "Meet our team",
-                      //   desc: "Who we are",
-                      // },
+                     
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
                         <a
@@ -246,7 +241,7 @@ export default function Navbar() {
                 >
                   <DropdownMenuTrigger asChild>
                     <button className="flex items-center border-none justify-between text-gray-900 hover:text-red-600 font-medium transition-all duration-300 w-full text-left p-3 rounded-lg hover:bg-white/20">
-                      <Link href="about">About</Link>
+                      <Link href="/about">About</Link>
                       <ChevronDown
                         className={`w-4 h-4 transition-transform duration-300 ${
                           isMobileDropdownOpen ? "rotate-180" : "rotate-0"
@@ -260,9 +255,9 @@ export default function Navbar() {
                     className="w-64 bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300"
                   >
                     {[
-                      { href: "#our-process", label: "Our Process" },
-                      { href: "#our-services", label: " Our Services" },
-                      { href: "#our-mission", label: "Our Mission" },
+                      { href: "/about#our-process", label: "Our Process" },
+                      { href: "/about#our-services", label: " Our Services" },
+                      { href: "/about#our-mission", label: "Our Mission" },
                       // { href: "#meet-our-team", label: "Meet our team" },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
