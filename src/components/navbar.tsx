@@ -16,7 +16,6 @@ import Image from "next/image";
 import logo from "@/assets/logoff.png";
 import Link from "next/link";
 import { useGetClientPortalQuery } from "@/redux/api/clientPortalApi";
-import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,22 +25,11 @@ export default function Navbar() {
 
   const { data: clientPortalData } = useGetClientPortalQuery({});
   const portal = clientPortalData?.data?.[0];
-
-  const router = useRouter();
+  // console.log("Client Portal Data:", portal);
+  
 
   const handleDesktopMouseEnter = () => setIsDesktopDropdownOpen(true);
   const handleDesktopMouseLeave = () => setIsDesktopDropdownOpen(false);
-
-  // Navigate to /about then scroll to the given section ID
-  const handleScrollToSection = async (id: string) => {
-    await router.push("/about");
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 100);
-  };
 
   return (
     <>
@@ -136,29 +124,28 @@ export default function Navbar() {
                   >
                     {[
                       {
-                        id: "our-process",
+                        href: "/about#our-process",
                         icon: <Settings className="w-5 h-5 text-white" />,
                         title: "Our Process",
                         desc: "Streamlined from start to finish.",
                       },
                       {
-                        id: "our-services",
+                        href: "/about#our-services",
                         icon: <FaWarehouse className="w-5 h-5 text-white" />,
                         title: " Our Services",
                         desc: "Built for every channel.",
                       },
                       {
-                        id: "our-mission",
+                        href: "/about#our-mission",
                         icon: <Target className="w-5 h-5 text-white" />,
                         title: "Our Mission",
                         desc: "Simplifying fulfillment.",
                       },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
-                        <button
-                          type="button"
-                          onClick={() => handleScrollToSection(item.id)}
-                          className="p-4 rounded-lg hover:bg-red-500/20 transition-all duration-300 flex items-start space-x-3 group text-left w-full"
+                        <a
+                          href={item.href}
+                          className="p-4 rounded-lg hover:bg-red-500/20 transition-all duration-300 flex items-start space-x-3 group"
                         >
                           <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                             {item.icon}
@@ -171,12 +158,20 @@ export default function Navbar() {
                               {item.desc}
                             </div>
                           </div>
-                        </button>
+                        </a>
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
+
+              {/* <Link
+                href="/"
+                className="text-gray-900 hover:text-red-600 font-bold transition-all duration-300 relative group px-3 py-2"
+              >
+                <span className="relative z-10">Contact</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link> */}
 
               <Link
                 href="/testimonial"
@@ -260,25 +255,30 @@ export default function Navbar() {
                     className="w-64 bg-white/95 backdrop-blur-xl border border-gray-200 shadow-2xl animate-in fade-in-0 zoom-in-95 duration-300"
                   >
                     {[
-                      { id: "our-process", label: "Our Process" },
-                      { id: "our-services", label: "Our Services" },
-                      { id: "our-mission", label: "Our Mission" },
+                      { href: "/about#our-process", label: "Our Process" },
+                      { href: "/about#our-services", label: " Our Services" },
+                      { href: "/about#our-mission", label: "Our Mission" },
+                      // { href: "#meet-our-team", label: "Meet our team" },
                     ].map((item, idx) => (
                       <DropdownMenuItem asChild key={idx}>
-                        <button
-                          type="button"
-                          className="w-full text-left transition-all duration-300 block px-4 py-3 text-gray-900 hover:text-red-600 hover:bg-red-500/20 rounded-lg"
-                          onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            handleScrollToSection(item.id);
-                          }}
+                        <a
+                          href={item.href}
+                          className="w-full transition-all duration-300 block px-4 py-3 text-gray-900 hover:text-red-600 hover:bg-red-500/20 rounded-lg"
+                          onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {item.label}
-                        </button>
+                        </a>
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>
                 </DropdownMenu>
+
+                {/* <Link
+                  href="/"
+                  className="text-gray-900 hover:text-red-600 font-medium transition-all duration-300 p-3 rounded-lg hover:bg-white/20"
+                >
+                  Contact
+                </Link> */}
 
                 <Link
                   href="/testimonial"

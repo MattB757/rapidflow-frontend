@@ -1,13 +1,13 @@
-"use client"
-import { X, Mail, AlertCircle } from "lucide-react"
+"use client";
+import { X, Mail, AlertCircle } from "lucide-react";
 
 interface ContactModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in-0 duration-300">
@@ -30,7 +30,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <Mail className="w-6 h-6 text-white" />
             </div>
             <h3 className="text-2xl font-bold mb-2">Get in touch</h3>
-            <p className="text-red-100">Send us an email for any questions or to get started now</p>
+            <p className="text-red-100">
+              Send us an email for any questions or to get started now
+            </p>
           </div>
         </div>
 
@@ -45,23 +47,28 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   <AlertCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-black mb-2">Form Currently Unavailable</h4>
-                  <p className="text-gray-700 mb-3">Please reach out to us directly via email:</p>
+                  <h4 className="font-semibold text-black mb-2">
+                    Form Currently Unavailable
+                  </h4>
+                  <p className="text-gray-700 mb-3">
+                    Please reach out to us directly via email:
+                  </p>
                 </div>
               </div>
 
               <div className="bg-white text-[9px] md:text-[16px] rounded-lg md:p-4 p-2 border border-red-200">
                 <a
-                  href="mailto:rapidflowfulfillment@gmail.com"
+                  href="mailto:support@rapidflowfulfillment.com"
                   className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-semibold transition-colors duration-200 group"
                 >
                   <Mail className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-                  <span>Support@rapidflowfulfillment.com</span>
+                  <span>support@rapidflowfulfillment.com</span>
                 </a>
               </div>
 
               <p className="text-sm text-gray-600 mt-3 italic">
-                We apologize for the inconvenience and will respond within 24 hours.
+                We apologize for the inconvenience and will respond within 24
+                hours.
               </p>
             </div>
           </div>
@@ -87,5 +94,5 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
