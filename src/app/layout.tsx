@@ -3,24 +3,34 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ClientProviders from "@/shared/ClientProviders";
 
+// custom local fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
 
+// global metadata for the site
 export const metadata: Metadata = {
-  title: "Rapid Flow Fulfillment",
+  title: {
+    default: "Rapid Flow Fulfillment",
+    template: "%s | Rapid Flow Fulfillment",
+  },
   description:
-    "Flexible and affordable 3PL fulfillment for ecommerce, retail, and more. Contact Rapid Flow Fulfillment for tailored logistics solutions, real-time tracking, and top-tier service",
+    "Flexible and affordable 3PL fulfillment for ecommerce, retail, and more. Contact Rapid Flow Fulfillment for tailored logistics solutions, real-time tracking, and top-tier service.",
   metadataBase: new URL("https://rapidflowfulfillment.com"),
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    apple: "/favicon.png",
   },
 };
 
@@ -31,7 +41,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} `}>
+      <head>
+        {/* Optional extra meta tags */}
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta name="theme-color" content="#ffffff" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
