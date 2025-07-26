@@ -388,7 +388,7 @@ export default function Testimonials() {
 
         {/* Main Testimonial Slider with Video */}
         <div className="relative mb-16">
-          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl p-12 border border-white/20 shadow-2xl">
+          <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl md:p-12 p-4  border border-white/20 shadow-2xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Testimonial Content */}
               <div className="space-y-8">

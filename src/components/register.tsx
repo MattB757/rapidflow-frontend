@@ -199,7 +199,7 @@ export default function Register() {
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 py-8 relative z-10 mt-14">
+      <div className="max-w-7xl mx-auto md:px-4 px-1 md:py-8 py-4 relative z-10 mt-14">
         <div className="grid lg:grid-cols-5 gap-8 items-start">
           {/* Left Content */}
           {!isLoading &&
@@ -208,7 +208,7 @@ export default function Register() {
               <div key={item.id || index} className="lg:col-span-3 space-y-8">
                 {/* Hero Section */}
                 <div className="text-center lg:text-left space-y-8">
-                  <h1 className="text-6xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
+                  <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight drop-shadow-2xl">
                     <span className=" decoration-red-400 decoration-4">
                       {item?.title.split(" ")[0]} {item?.title.split(" ")[1]}
                     </span>
@@ -218,7 +218,7 @@ export default function Register() {
                     </span>
                   </h1>
 
-                  <p className="text-2xl text-gray-300 leading-relaxed font-light max-w-3xl">
+                  <p className="md:text-2xl text-xl text-gray-300 leading-relaxed font-light max-w-3xl px-5">
                     {item?.description}
                   </p>
                 </div>

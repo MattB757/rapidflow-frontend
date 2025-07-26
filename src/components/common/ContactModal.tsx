@@ -50,7 +50,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-4 border border-red-200">
+              <div className="bg-white text-[9px] md:text-[16px] rounded-lg md:p-4 p-2 border border-red-200">
                 <a
                   href="mailto:rapidflowfulfillment@gmail.com"
                   className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-semibold transition-colors duration-200 group"
