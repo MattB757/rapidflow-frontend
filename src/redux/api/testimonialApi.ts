@@ -28,7 +28,7 @@ const testimonialApi = baseApi.injectEndpoints({
         url: `testimonials`,
         method: "GET",
       }),
-      providesTags: ["Testimonials"],
+      // providesTags: ["Testimonials"],
     }),
   }),
 });

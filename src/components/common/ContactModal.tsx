@@ -1,6 +1,6 @@
 "use client";
 import { useGetContactQuery } from "@/redux/api/contactApi";
-import { X, Mail, AlertCircle } from "lucide-react";
+import { Mail, AlertCircle } from "lucide-react";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -26,13 +26,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full translate-y-12 -translate-x-12"></div>
 
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-200 group"
-          >
-            <X className="w-5 h-5 text-white group-hover:scale-110 transition-transform duration-200" />
-          </button>
+        
 
           <div className="relative z-10">
             <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">

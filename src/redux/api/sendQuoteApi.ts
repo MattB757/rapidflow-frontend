@@ -11,7 +11,7 @@ const sendQuoteApi = baseApi.injectEndpoints({
       }),
     }),
   }),
-  overrideExisting: true,
+  // overrideExisting: true,
 });
 
 export const { useSendQuoteMutation } = sendQuoteApi;

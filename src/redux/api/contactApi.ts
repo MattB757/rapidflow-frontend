@@ -9,7 +9,7 @@ const contactApi = baseApi.injectEndpoints({
         url: `contact`,
         method: "GET",
       }),
-      providesTags: ["Contact"],
+      // providesTags: ["Contact"],
     }),
   }),
 });
