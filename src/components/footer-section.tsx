@@ -11,7 +11,7 @@ import {
   FaInstagram,
   FaLinkedin,
   FaTiktok,
-  FaWhatsapp,
+  // FaWhatsapp,
 } from "react-icons/fa";
 
 // Define proper TypeScript interfaces
@@ -82,7 +82,7 @@ export default function Footer() {
       case "tiktok":
         return <FaTiktok className="w-4 h-4" />;
       default:
-        return <FaWhatsapp className="w-5 h-5" />;
+        return <FaInstagram className="w-5 h-5" />;
     }
   };
 
