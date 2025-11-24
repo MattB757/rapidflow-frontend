@@ -9,8 +9,10 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
 
+  // If no code, redirect to GitHub OAuth
   if (!code) {
-    return NextResponse.json({ error: 'No code provided' }, { status: 400 });
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=repo,user`;
+    return NextResponse.redirect(authUrl);
   }
 
   try {
