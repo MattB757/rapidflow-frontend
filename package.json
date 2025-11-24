@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
-    "build": "tinacms build && next build",
+    "build": "tinacms build && npx opennextjs-cloudflare build",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "pages:dev": "npx @cloudflare/next-on-pages && npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
-    "pages:deploy": "npm run pages:build && npx wrangler pages deploy .vercel/output/static"
+    "pages:build": "npx @opennextjs/cloudflare",
+    "pages:dev": "npx @opennextjs/cloudflare && npx wrangler pages dev .open-next/cloudflare --compatibility-flag=nodejs_compat",
+    "pages:deploy": "npm run pages:build && npx wrangler pages deploy .open-next/cloudflare"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -42,7 +42,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "1.13.5",
+    "@opennextjs/cloudflare": "1.13.1",
     "@tinacms/cli": "^1.12.4",
     "@types/node": "^20.19.25",
     "@types/react": "^18.3.23",
