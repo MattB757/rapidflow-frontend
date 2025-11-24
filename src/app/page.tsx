@@ -2,16 +2,17 @@ import Features from "@/components/features-section";
 import Footer from "@/components/footer-section";
 import Navbar from "@/components/navbar";
 import Register from "@/components/register";
+import client from "../../tina/__generated__/client";
+import ClientPage from "./client-page";
 
-const HomePage = () => {
+export default async function HomePage() {
+  const pageResponse = await client.queries.page({ relativePath: "home.mdx" });
+
   return (
-    <div>
-      <Navbar />
-      <Register />
-      <Features />
-      <Footer />
-    </div>
+    <ClientPage
+      data={pageResponse.data}
+      query={pageResponse.query}
+      variables={pageResponse.variables}
+    />
   );
-};
-
-export default HomePage;
+}
