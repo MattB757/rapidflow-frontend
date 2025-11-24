@@ -5,11 +5,6 @@ export const runtime = 'edge';
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const code = url.searchParams.get('code');
-  const provider = url.searchParams.get('provider');
-
-  if (provider !== 'github') {
-    return NextResponse.json({ error: 'Invalid provider' }, { status: 400 });
-  }
 
   if (!code) {
     return NextResponse.json({ error: 'Missing code' }, { status: 400 });
@@ -34,7 +29,7 @@ export async function GET(request: Request) {
         client_id: clientId,
         client_secret: clientSecret,
         code,
-        redirect_uri: `${url.origin}/api/auth/callback?provider=github`,
+        redirect_uri: `${url.origin}/api/auth/callback`,
       }),
     });
 
