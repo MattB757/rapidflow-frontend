@@ -29,6 +29,7 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        // Page collection for visual editing
         name: "page",
         label: "Pages",
         path: "content/pages",
