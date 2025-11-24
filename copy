@@ -1,0 +1,10 @@
+NODE_ENV=development # do not add this when deploying to production
+DATABASE_URL="mongodb+srv://matthew:LZQhzWMkJCTbVcfw@cluster0.wqymbxc.mongodb.net/matthew?retryWrites=true&w=majority&appName=Cluster0"
+PORT=5000
+ 
+FRONTEND_URL=http://localhost:3000
+BACKEND_IMAGE_URL=https://matthew-backend.vercel.app/uploads
+
+EMAIL="rapidflowfulfillment@gmail.com"
+APP_PASS="ifrx dpoi sipf fqwr"
+CONTACT_MAIL_ADDRESS = "rapidflowfulfillment@gmail.com"

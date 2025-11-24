@@ -76,7 +76,7 @@ export default function Testimonials() {
       setMutedVideos(new Set(videoIds));
       setMutedCardVideos(new Set(videoIds));
     }
-  }, [testimonials.length]);
+  }, [testimonials]);
 
   // Reset current slide if it's out of bounds
   useEffect(() => {
