@@ -50,7 +50,7 @@ export async function GET(request: Request) {
     `, {
       headers: { 'Content-Type': 'text/html' },
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to authenticate' }, { status: 500 });
   }
 }
