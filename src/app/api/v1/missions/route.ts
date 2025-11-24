@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { toList } from "../_lib/content";
 import contentData from "@/content/missions.json";
 
-export const runtime = 'edge';
 
 export async function GET() {
   try {

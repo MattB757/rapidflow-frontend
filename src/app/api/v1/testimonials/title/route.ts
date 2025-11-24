@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import contentData from "@/content/testimonials-title.json";
 
-export const runtime = 'edge';
 
 export async function GET() {
   try {
