@@ -8,7 +8,7 @@ import ClientPage from "./client-page";
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  const pageResponse = await client.queries.page({ relativePath: "home.mdx" });
+  const pageResponse = await client.queries.home({ relativePath: "index.json" });
 
   return (
     <ClientPage

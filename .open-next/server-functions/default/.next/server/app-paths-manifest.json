@@ -15,6 +15,6 @@
   "/api/v1/testimonials/title/route": "app/api/v1/testimonials/title/route.js",
   "/api/v1/visions/route": "app/api/v1/visions/route.js",
   "/faq/page": "app/faq/page.js",
-  "/page": "app/page.js",
-  "/testimonial/page": "app/testimonial/page.js"
+  "/testimonial/page": "app/testimonial/page.js",
+  "/page": "app/page.js"
 }

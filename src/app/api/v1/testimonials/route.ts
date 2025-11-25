@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { toList } from "../_lib/content";
-import contentData from "@/content/testimonials.json";
+import contentData from "@content/testimonials.json";
 
 
 export async function GET() {
